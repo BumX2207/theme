@@ -79,9 +79,9 @@
         body.glass-ui-mode .nav-icon-circle::after, .nav-icon-circle::after {
             content: '';
             position: absolute;
-            top: -28px; 
-            right: 0px; /* Cắm ngay mép phải nút */
-            width: 4px; 
+            top: -50px;
+            right: 19px;
+            width: 4px;
             height: 50px;
             background: linear-gradient(to right, #8b4513, #5c2e0b); /* Màu vân gỗ nâu */
             border-radius: 2px;
@@ -93,9 +93,9 @@
         body.glass-ui-mode .nav-icon-circle::before, .nav-icon-circle::before {
             content: '';
             position: absolute;
-            top: -25px; 
-            right: 2px; /* Gắn cờ dính vào thân cột */
-            width: 38px; 
+            top: -50px;
+            right: 19px;
+            width: 38px;
             height: 25px;
             /* Mã SVG Cờ Việt Nam chuẩn tỷ lệ 2:3 */
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%23da251d'/%3E%3Cpolygon fill='%23ffff00' points='150,25 179,111 269,111 197,165 223,251 150,197 77,251 103,165 31,111 121,111'/%3E%3C/svg%3E") !important; 

@@ -100,5 +100,5 @@
         }
     }, 1000);
 
-    console.log("[THEME ENGINE] Đã kích hoạt Theme Noel Đỏ Rực! 🎄🎅");
+    console.log("Đã kích hoạt Theme Noel");
 })();

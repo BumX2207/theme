@@ -45,13 +45,14 @@
             width: 65px; 
             height: 65px;
             /* Cục mã SVG siêu việt nằm luôn trong CSS */
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'%3E%3Cpath fill='%23DA2F47' d='M33.649 19.344c-1.391-2.909-5.267-3.959-5.267-3.959-1.92-12.781-17.75-9.875-22.375-3.375-3.15 4.428-1.579 11.599-1.579 11.599 1.745-.335 4.316-1.523 5.485-1.905-1.258-2.617-.417-6.074 1.341-8.544 3.733-5.249 14.155-2.072 15.656 7.643.082.527.241 1.054.453 1.576.471.05 1.002.162 1.621.361 2.374.764 4.542 1.764 4.665-3.396z'/%3E%3Cpath fill='%23E1E8ED' d='M30 22c0 2.209-1.791 4-4 4s-4-1.791-4-4 1.791-4 4-4 4 1.791 4 4zM24.875 25C24.875 28.313 20.397 31 14.875 31 9.352 31 4.875 28.313 4.875 25c0-3.313 4.477-6 9.999-6 5.523 0 10.001 2.687 10.001 6z'/%3E%3C/svg%3E") !important; 
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='%23E63946' d='M421.3 285.8c-12-32.8-37.4-87.3-68.5-125.5C311.2 109 256 64 256 64S171.1 113.8 119.5 175.7c-33 39.8-59 86-63.5 94.6-6.1 11.6-9.6 24.6-10.2 38-.9 17.5 3.3 34.6 11.8 49 14.5 24.5 40.5 38.6 68.4 38.6h260c27.9 0 53.9-14.1 68.4-38.6 8.5-14.4 12.7-31.5 11.8-49-.5-11.4-2.8-22.5-7.3-32.5z'/%3E%3Cpath fill='%23FFFFFF' d='M443.5 365H68.5C50 365 35 380 35 398.5S50 432 68.5 432h375c18.5 0 33.5-15 33.5-33.5S462 365 443.5 365z'/%3E%3Ccircle fill='%23FFFFFF' cx='93.2' cy='151.7' r='60'/%3E%3C/svg%3E") !important; 
             background-size: contain !important;
             background-repeat: no-repeat !important;
             background-position: center !important;
             z-index: 100 !important;
-            transform: rotate(35deg);
+            transform: rotate(18deg);
             pointer-events: none;
+            filter: drop-shadow(0px 3px 3px rgba(0,0,0,0.4)) !important; 
         }
 
         /* HIỆU ỨNG TUYẾT RƠI MƯỢT MÀ */

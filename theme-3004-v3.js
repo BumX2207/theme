@@ -29,7 +29,7 @@
             justify-content: center; align-items: center; text-align: center;
             pointer-events: none; /* Không cản trở click chuột */
             /* Đứng yên 3s rồi từ từ mờ đi trong 0.5s */
-            animation: fadeOutBanner 0.5s ease 3s forwards; 
+            animation: fadeOutBanner 0.5s ease 5s forwards; 
         }
         .holiday-text-main {
             font-size: clamp(28px, 8vw, 60px); /* Tự co giãn theo màn hình điện thoại/máy tính */

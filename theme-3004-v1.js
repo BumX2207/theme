@@ -45,16 +45,18 @@
         body.glass-ui-mode .nav-icon-circle::before, .nav-icon-circle::before {
             content: '';
             position: absolute;
-            top: -12px; right: -8px;
-            width: 35px; height: 35px;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='%23ffff00' d='M256 14.316l73.416 225.962h237.584l-192.183 139.64 73.417 225.961-192.234-139.64-192.234 139.64 73.416-225.961-192.183-139.64h237.584z'/%3E%3C/svg%3E") !important; 
+            top: 0px;
+            right: 1px;
+            width: 40px;
+            height: 40px;
+            background-image: url(data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='%23ffff00' d='M256 14.316l73.416 225.962h237.584l-192.183 139.64 73.417 225.961-192.234-139.64-192.234 139.64 73.416-225.961-192.183-139.64h237.584z'/%3E%3C/svg%3E) !important;
             background-size: contain !important;
             background-repeat: no-repeat !important;
             background-position: center !important;
             z-index: 100 !important;
-            transform: rotate(15deg);
+            transform: rotate(0deg);
             pointer-events: none;
-            filter: drop-shadow(0px 0px 5px rgba(255,255,0,0.8)) !important; 
+            filter: drop-shadow(0px 0px 5px rgba(255, 255, 0, 0.8)) !important;
         }
 
         /* -------------------------------------------------------------

@@ -8,7 +8,7 @@
         body.glass-ui-mode #tgdd-report-nav, 
         body.glass-ui-mode .tgdd-top-bar,
         #tgdd-bottom-nav, #tgdd-report-nav, .tgdd-top-bar {
-            background: linear-gradient(135deg, #c0392b, #e74c3c) !important;
+            background: linear-gradient(135deg, #695d5c, #c47168) !important;
             border-top: 2px solid #fff !important;
             backdrop-filter: none !important; /* Tắt kính mờ để thấy rõ màu đỏ */
         }
@@ -40,17 +40,17 @@
         body.glass-ui-mode .nav-icon-circle::before, .nav-icon-circle::before {
             content: '';
             position: absolute;
-            top: -14px; 
-            right: -6px;
-            width: 42px; 
-            height: 42px;
+            top: -35px; 
+            right: -30px;
+            width: 65px; 
+            height: 65px;
             /* Cục mã SVG siêu việt nằm luôn trong CSS */
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'%3E%3Cpath fill='%23DA2F47' d='M33.649 19.344c-1.391-2.909-5.267-3.959-5.267-3.959-1.92-12.781-17.75-9.875-22.375-3.375-3.15 4.428-1.579 11.599-1.579 11.599 1.745-.335 4.316-1.523 5.485-1.905-1.258-2.617-.417-6.074 1.341-8.544 3.733-5.249 14.155-2.072 15.656 7.643.082.527.241 1.054.453 1.576.471.05 1.002.162 1.621.361 2.374.764 4.542 1.764 4.665-3.396z'/%3E%3Cpath fill='%23E1E8ED' d='M30 22c0 2.209-1.791 4-4 4s-4-1.791-4-4 1.791-4 4-4 4 1.791 4 4zM24.875 25C24.875 28.313 20.397 31 14.875 31 9.352 31 4.875 28.313 4.875 25c0-3.313 4.477-6 9.999-6 5.523 0 10.001 2.687 10.001 6z'/%3E%3C/svg%3E") !important; 
             background-size: contain !important;
             background-repeat: no-repeat !important;
             background-position: center !important;
             z-index: 100 !important;
-            transform: rotate(15deg);
+            transform: rotate(35deg);
             pointer-events: none;
         }
 

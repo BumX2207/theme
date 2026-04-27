@@ -40,16 +40,17 @@
         body.glass-ui-mode .nav-icon-circle::before, .nav-icon-circle::before {
             content: '';
             position: absolute;
-            top: -20px; 
-            right: -12px;
-            width: 45px; 
-            height: 45px;
-            background-image: url('https://i.imgur.com/HIfi2Nn.png') !important; 
+            top: -16px; 
+            right: -6px;
+            width: 40px; 
+            height: 40px;
+            /* Link CDN chuyên dụng, không bao giờ bị lỗi khung đen */
+            background-image: url('https://img.icons8.com/color/96/santa-hat.png') !important; 
             background-size: contain !important;
             background-repeat: no-repeat !important;
             background-position: center !important;
             z-index: 100 !important;
-            transform: rotate(15deg);
+            transform: rotate(20deg);
             pointer-events: none;
         }
 

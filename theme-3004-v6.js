@@ -7,7 +7,7 @@
     const isHomePage = path === '/' || path === '' || href.includes('/khoi-ban-hang-sub/-1');
 
     if (!isHomePage) {
-        console.log("[THEME ENGINE] Đang ở trang Báo Cáo. Giữ giao diện gốc.");
+        console.log("Đang ở trang Báo Cáo. Giữ giao diện gốc.");
         return;
     }
 

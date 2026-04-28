@@ -174,7 +174,7 @@
             const overlay = document.getElementById('theme-loading-overlay');
             if (overlay) {
                 // 1. Đổi chữ
-                document.getElementById('theme-status-text').innerHTML = "TIẾN VÀO DINH ĐỘC LẬP! 🇻🇳";
+                document.getElementById('theme-status-text').innerHTML = "TIẾN VÀO DINH ĐỘC LẬP!";
                 
                 // 2. Kích hoạt hiệu ứng Tông Cổng (Xe tăng vút đi, Cổng vỡ đôi)
                 overlay.classList.add('crashing');

@@ -38,27 +38,34 @@
         body.glass-ui-mode #tgdd-bottom-nav .nav-item svg, #tgdd-bottom-nav .nav-item svg { stroke: #10b981 !important; fill: transparent !important; }
         body.glass-ui-mode #tgdd-bottom-nav .nav-item, #tgdd-bottom-nav .nav-item { color: #10b981 !important; font-weight: bold; }
         
-        /* 🌿 THẢM CỎ MỌC TRÊN MÉP THANH NAV (CÓ HIỆU ỨNG GIÓ THỔI) 🌿 */
+        /* 🌿 THẢM CỎ LÁ LÚA MỌC TRÊN MÉP NAV (HIỆU ỨNG GIÓ THỔI LẮC LƯ) 🌿 */
         body.glass-ui-mode #tgdd-bottom-nav::before, #tgdd-bottom-nav::before {
             content: ''; position: absolute;
-            top: -14px; /* Độ nhô cao của cỏ */
-            left: 0; width: 100%; height: 15px;
-            /* Mã SVG tự vẽ các ngọn cỏ với 2 lớp màu: đậm và sáng */
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 30' preserveAspectRatio='none'%3E%3Cpath fill='%23064e3b' d='M0,30 L5,10 L10,30 L15,5 L20,30 L25,15 L30,30 L35,8 L40,30 L45,12 L50,30 L55,5 L60,30 L65,15 L70,30 L75,8 L80,30 L85,12 L90,30 L95,10 L100,30 Z'/%3E%3Cpath fill='%2310b981' d='M0,30 L8,15 L16,30 L24,10 L32,30 L40,18 L48,30 L56,12 L64,30 L72,20 L80,30 L88,15 L96,30 L100,30 Z'/%3E%3C/svg%3E");
-            background-size: 80px 100%;
+            top: -24px; /* Nâng cao lên để cỏ vươn dài ra */
+            left: -5%; width: 110%; height: 25px; /* Mở rộng chiều ngang để khi nghiêng không bị hụt góc */
+            /* Mã SVG tự vẽ lá lúa: Mảnh, cao, sắc nhọn và đan xen dày đặc */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 40' preserveAspectRatio='none'%3E%3Cpath fill='%23064e3b' d='M0,40 L3,10 L6,40 L10,5 L14,40 L18,15 L22,40 L25,8 L29,40 L32,12 L36,40 L40,5 L44,40 L48,15 L52,40 L55,10 L59,40 L62,5 L66,40 L70,12 L74,40 L78,8 L82,40 L85,15 L89,40 L93,5 L97,40 L100,20 L100,40 Z'/%3E%3Cpath fill='%2310b981' d='M2,40 L5,2 L8,40 L12,8 L15,40 L20,0 L23,40 L27,10 L30,40 L34,4 L38,40 L42,12 L46,40 L50,0 L53,40 L57,8 L60,40 L64,2 L68,40 L72,10 L76,40 L80,5 L84,40 L88,15 L91,40 L95,2 L98,40 Z'/%3E%3C/svg%3E");
+            background-size: 60px 100%; /* Bóp nhỏ chiều ngang để cỏ mọc khít và mảnh hơn */
             background-repeat: repeat-x;
             background-position: bottom left;
             pointer-events: none;
             z-index: 0;
-            animation: grass-wind 5s linear infinite; /* Hiệu ứng cỏ chạy trong gió */
+            
+            /* Gốc giữ nguyên, ngọn lắc lư */
+            transform-origin: bottom center; 
+            animation: grass-sway 4s ease-in-out infinite alternate; 
             filter: drop-shadow(0 -2px 2px rgba(0,0,0,0.3));
         }
-        @keyframes grass-wind {
-            0% { background-position: 0 100%; }
-            100% { background-position: -80px 100%; }
+
+        /* Keyframes Gió lùa qua lại */
+        @keyframes grass-sway {
+            0% { transform: skewX(-10deg); }
+            40% { transform: skewX(5deg); }
+            80% { transform: skewX(-5deg); }
+            100% { transform: skewX(8deg); }
         }
         
-        /* Cục tròn ở giữa biến thành Sân cỏ thu nhỏ (Nâng z-index để đè lên cỏ) */
+        /* Cục tròn ở giữa biến thành Sân cỏ thu nhỏ (Nâng z-index) */
         body.glass-ui-mode .nav-icon-circle, .nav-icon-circle { background: radial-gradient(circle, #34d399 0%, #059669 100%) !important; border: 3px solid #fff !important; box-shadow: 0 0 15px rgba(16, 185, 129, 0.8), inset 0 0 10px rgba(0,0,0,0.5) !important; overflow: visible !important; z-index: 2 !important;}
         body.glass-ui-mode .nav-icon-circle svg, .nav-icon-circle svg { stroke: #fff !important; }
         

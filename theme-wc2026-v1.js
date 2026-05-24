@@ -34,16 +34,36 @@
         @keyframes fadeOutBanner { 0% { opacity: 1; } 100% { opacity: 0; visibility: hidden; } }
 
         /* --- BOTTOM NAV & NÚT BẤM BÓNG ĐÁ --- */
-        body.glass-ui-mode #tgdd-bottom-nav, #tgdd-bottom-nav { background: linear-gradient(135deg, #022c22, #064e3b) !important; border-top: 2px solid #10b981 !important; }
+        body.glass-ui-mode #tgdd-bottom-nav, #tgdd-bottom-nav { background: linear-gradient(135deg, #022c22, #064e3b) !important; border-top: none !important; }
         body.glass-ui-mode #tgdd-bottom-nav .nav-item svg, #tgdd-bottom-nav .nav-item svg { stroke: #10b981 !important; fill: transparent !important; }
         body.glass-ui-mode #tgdd-bottom-nav .nav-item, #tgdd-bottom-nav .nav-item { color: #10b981 !important; font-weight: bold; }
         
-        /* Cục tròn ở giữa biến thành Sân cỏ thu nhỏ */
-        body.glass-ui-mode .nav-icon-circle, .nav-icon-circle { background: radial-gradient(circle, #34d399 0%, #059669 100%) !important; border: 3px solid #fff !important; box-shadow: 0 0 15px rgba(16, 185, 129, 0.8), inset 0 0 10px rgba(0,0,0,0.5) !important; overflow: visible !important; }
+        /* 🌿 THẢM CỎ MỌC TRÊN MÉP THANH NAV (CÓ HIỆU ỨNG GIÓ THỔI) 🌿 */
+        body.glass-ui-mode #tgdd-bottom-nav::before, #tgdd-bottom-nav::before {
+            content: ''; position: absolute;
+            top: -14px; /* Độ nhô cao của cỏ */
+            left: 0; width: 100%; height: 15px;
+            /* Mã SVG tự vẽ các ngọn cỏ với 2 lớp màu: đậm và sáng */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 30' preserveAspectRatio='none'%3E%3Cpath fill='%23064e3b' d='M0,30 L5,10 L10,30 L15,5 L20,30 L25,15 L30,30 L35,8 L40,30 L45,12 L50,30 L55,5 L60,30 L65,15 L70,30 L75,8 L80,30 L85,12 L90,30 L95,10 L100,30 Z'/%3E%3Cpath fill='%2310b981' d='M0,30 L8,15 L16,30 L24,10 L32,30 L40,18 L48,30 L56,12 L64,30 L72,20 L80,30 L88,15 L96,30 L100,30 Z'/%3E%3C/svg%3E");
+            background-size: 80px 100%;
+            background-repeat: repeat-x;
+            background-position: bottom left;
+            pointer-events: none;
+            z-index: 0;
+            animation: grass-wind 5s linear infinite; /* Hiệu ứng cỏ chạy trong gió */
+            filter: drop-shadow(0 -2px 2px rgba(0,0,0,0.3));
+        }
+        @keyframes grass-wind {
+            0% { background-position: 0 100%; }
+            100% { background-position: -80px 100%; }
+        }
+        
+        /* Cục tròn ở giữa biến thành Sân cỏ thu nhỏ (Nâng z-index để đè lên cỏ) */
+        body.glass-ui-mode .nav-icon-circle, .nav-icon-circle { background: radial-gradient(circle, #34d399 0%, #059669 100%) !important; border: 3px solid #fff !important; box-shadow: 0 0 15px rgba(16, 185, 129, 0.8), inset 0 0 10px rgba(0,0,0,0.5) !important; overflow: visible !important; z-index: 2 !important;}
         body.glass-ui-mode .nav-icon-circle svg, .nav-icon-circle svg { stroke: #fff !important; }
         
         /* Trái bóng nảy trên cục tròn */
-        body.glass-ui-mode .nav-icon-circle::before, .nav-icon-circle::before { 
+        body.glass-ui-mode .nav-icon-circle::after, .nav-icon-circle::after { 
             content: ''; position: absolute; top: -20px; right: -10px; width: 35px; height: 35px; 
             background-image: url("${SVG_BALL}") !important; background-size: contain !important; background-repeat: no-repeat !important; 
             z-index: 100 !important; pointer-events: none; filter: drop-shadow(0px 5px 5px rgba(0,0,0,0.6)) !important;

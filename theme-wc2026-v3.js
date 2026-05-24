@@ -78,11 +78,31 @@
         }
         @keyframes bounce-ball { 0% { transform: translateY(0) rotate(0deg); } 100% { transform: translateY(-15px) rotate(180deg); } }
 
-        /* --- VẬT THỂ RƠI MÙA BÓNG (Bóng, Thẻ phạt, Cúp) --- */
-        #festive-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 99999; overflow: hidden; }
-        .wc-item { position: absolute; top: -50px; opacity: 0.8; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4)); animation: fall-wc linear infinite; }
-        @keyframes fall-wc { 0% { transform: translateY(-50px) translateX(0) rotate(0deg); opacity: 1; } 100% { transform: translateY(110vh) translateX(100px) rotate(720deg); opacity: 0; } }
+        /* =========================================================================
+           2 CẦU THỦ TÂNG BÓNG QUA LẠI
+           ========================================================================= */
+        #football-field { position: absolute; top: -45px; left: 50%; transform: translateX(-50%); width: 280px; height: 60px; pointer-events: none; z-index: 10; display: flex; justify-content: space-between; align-items: flex-end; }
+        
+        .player-left, .player-right { width: 35px; height: 45px; background-size: contain; background-repeat: no-repeat; filter: drop-shadow(0 5px 3px rgba(0,0,0,0.6)); }
+        
+        /* Hình dạng cầu thủ */
+        .player-left { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 512'%3E%3Cpath fill='%23fff' d='M208 48c0 26.5-21.5 48-48 48s-48-21.5-48-48 21.5-48 48-48 48 21.5 48 48zM149.3 221.7l-42.3-43c-14.9-15.1-38.3-16.7-54.8-3.8L9.3 210.8c-13.7 10.7-16.1 30.5-5.4 44.2s30.5 16.1 44.2 5.4l28.5-22.3 25.1 25.5-35.4 140.2c-4 15.8 5.6 31.8 21.4 35.8s31.8-5.6 35.8-21.4l34.4-136.2c3.5-13.7-2.3-28-14.1-34.9l-22.6-13.2 24.3-24.7 44.8 68.6c11 16.8 32.8 21.5 49.6 10.5s21.5-32.8 10.5-49.6l-58-88.7c-9.1-13.9-25.7-20.9-42.6-17.3l-24.8 5.3 24.3-24.7z'/%3E%3C/svg%3E"); animation: kick-left 2s infinite cubic-bezier(0.4, 0, 0.2, 1); }
+        .player-right { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 512'%3E%3Cpath fill='%23fff' d='M208 48c0 26.5-21.5 48-48 48s-48-21.5-48-48 21.5-48 48-48 48 21.5 48 48zM149.3 221.7l-42.3-43c-14.9-15.1-38.3-16.7-54.8-3.8L9.3 210.8c-13.7 10.7-16.1 30.5-5.4 44.2s30.5 16.1 44.2 5.4l28.5-22.3 25.1 25.5-35.4 140.2c-4 15.8 5.6 31.8 21.4 35.8s31.8-5.6 35.8-21.4l34.4-136.2c3.5-13.7-2.3-28-14.1-34.9l-22.6-13.2 24.3-24.7 44.8 68.6c11 16.8 32.8 21.5 49.6 10.5s21.5-32.8 10.5-49.6l-58-88.7c-9.1-13.9-25.7-20.9-42.6-17.3l-24.8 5.3 24.3-24.7z'/%3E%3C/svg%3E"); transform: scaleX(-1); animation: kick-right 2s infinite cubic-bezier(0.4, 0, 0.2, 1); }
+        
+        /* Hoạt ảnh giật chân sút bóng */
+        @keyframes kick-left { 0%, 90%, 100% { transform: translateY(0) rotate(0deg); } 95% { transform: translateY(-5px) rotate(10deg); } }
+        @keyframes kick-right { 0%, 40%, 50%, 100% { transform: scaleX(-1) translateY(0) rotate(0deg); } 45% { transform: scaleX(-1) translateY(-5px) rotate(10deg); } }
 
+        /* Quả bóng bay qua bay lại (Dùng X và Y để tạo đường cong) */
+        .passing-ball { position: absolute; bottom: 0; left: 30px; width: 15px; height: 15px; background-image: url("${SVG_BALL}"); background-size: contain; background-repeat: no-repeat; filter: drop-shadow(0 5px 5px rgba(0,0,0,0.5)); animation: pass-x 2s infinite linear, pass-y 2s infinite cubic-bezier(0.2, 0.8, 0.8, 0.2), spin-ball 2s infinite linear; }
+        
+        /* Bay từ trái (30px) sang phải (235px) rồi quay lại */
+        @keyframes pass-x { 0%, 100% { left: 30px; } 50% { left: 235px; } }
+        /* Nảy lên hình vòng cung (Lên cao -40px rồi rớt xuống đáy) */
+        @keyframes pass-y { 0%, 50%, 100% { bottom: 0; } 25%, 75% { bottom: 40px; } }
+        /* Xoay vòng vòng */
+        @keyframes spin-ball { 0% { transform: rotate(0deg); } 100% { transform: rotate(720deg); } }
+        
         /* =========================================================================
            HOẠT CẢNH SÚT BÓNG VÀO LƯỚI (LOADING MÀN HÌNH CHỜ)
            ========================================================================= */
@@ -242,28 +262,27 @@
         setTimeout(() => { if (banner) banner.remove(); }, 4600);
     }
 
-    const wcIcons = [SVG_BALL, SVG_TROPHY, SVG_YELLOW_CARD, SVG_RED_CARD, SVG_BALL]; // Nhiều bóng hơn chút
-
-    const checkDomReady = setInterval(() => {
+    // =========================================================================
+    // 5. GẮN CẦU THỦ LÊN BOTTOM NAV
+    // =========================================================================
+    const initPlayers = setInterval(() => {
         const bottomNav = document.getElementById('tgdd-bottom-nav');
-        if (bottomNav) {
-            if (!document.getElementById('festive-container')) {
-                const sky = document.createElement('div'); sky.id = 'festive-container'; document.body.appendChild(sky);
-                for (let i = 0; i < 25; i++) {
-                    let item = document.createElement('div'); item.className = 'wc-item';
-                    item.style.backgroundImage = `url("${wcIcons[Math.floor(Math.random() * wcIcons.length)]}")`;
-                    item.style.backgroundSize = 'contain';
-                    item.style.backgroundRepeat = 'no-repeat';
-                    
-                    let size = Math.random() * 20 + 20; // 20px - 40px
-                    item.style.width = size + 'px'; item.style.height = size + 'px';
-                    item.style.left = Math.random() * 100 + 'vw';
-                    item.style.animationDuration = (Math.random() * 4 + 4) + 's'; // Rơi nhanh hơn hoa mai
-                    item.style.animationDelay = Math.random() * 5 + 's';
-                    sky.appendChild(item);
-                }
-            }
-            clearInterval(checkDomReady);
+        if (bottomNav && !document.getElementById('football-field')) {
+            const field = document.createElement('div');
+            field.id = 'football-field';
+            
+            // Xóa quả bóng nảy mặc định của nút tròn (để nhường chỗ cho bóng chuyền)
+            const styleFix = document.createElement('style');
+            styleFix.innerHTML = `body.glass-ui-mode .nav-icon-circle::after, .nav-icon-circle::after { display: none !important; }`;
+            document.head.appendChild(styleFix);
+
+            field.innerHTML = `
+                <div class="player-left"></div>
+                <div class="passing-ball"></div>
+                <div class="player-right"></div>
+            `;
+            bottomNav.appendChild(field);
+            clearInterval(initPlayers);
         }
     }, 500);
 

@@ -41,11 +41,11 @@
         /* 🌿 THẢM CỎ LÁ LÚA MỌC TRÊN MÉP NAV (HIỆU ỨNG GIÓ THỔI LẮC LƯ) 🌿 */
         body.glass-ui-mode #tgdd-bottom-nav::before, #tgdd-bottom-nav::before {
             content: ''; position: absolute;
-            top: -24px; /* Nâng cao lên để cỏ vươn dài ra */
-            left: -5%; width: 110%; height: 25px; /* Mở rộng chiều ngang để khi nghiêng không bị hụt góc */
+            top: -9px; /* Nâng cao lên để cỏ vươn dài ra */
+            left: -5%; width: 110%; height: 10px; /* Mở rộng chiều ngang để khi nghiêng không bị hụt góc */
             /* Mã SVG tự vẽ lá lúa: Mảnh, cao, sắc nhọn và đan xen dày đặc */
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 40' preserveAspectRatio='none'%3E%3Cpath fill='%23064e3b' d='M0,40 L3,10 L6,40 L10,5 L14,40 L18,15 L22,40 L25,8 L29,40 L32,12 L36,40 L40,5 L44,40 L48,15 L52,40 L55,10 L59,40 L62,5 L66,40 L70,12 L74,40 L78,8 L82,40 L85,15 L89,40 L93,5 L97,40 L100,20 L100,40 Z'/%3E%3Cpath fill='%2310b981' d='M2,40 L5,2 L8,40 L12,8 L15,40 L20,0 L23,40 L27,10 L30,40 L34,4 L38,40 L42,12 L46,40 L50,0 L53,40 L57,8 L60,40 L64,2 L68,40 L72,10 L76,40 L80,5 L84,40 L88,15 L91,40 L95,2 L98,40 Z'/%3E%3C/svg%3E");
-            background-size: 60px 100%; /* Bóp nhỏ chiều ngang để cỏ mọc khít và mảnh hơn */
+            background-size: 30px 90%; /* Bóp nhỏ chiều ngang để cỏ mọc khít và mảnh hơn */
             background-repeat: repeat-x;
             background-position: bottom left;
             pointer-events: none;

@@ -18,53 +18,51 @@
     // Ngôi sao lấp lánh
     const SVG_SPARKLE = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='%23FFD700' d='M256 0c15 110 65 160 175 175-110 15-160 65-175 175-15-110-65-160-175-175C191 160 241 110 256 0z'/%3E%3C/svg%3E";
 
-    // =========================================================================
-    // 3. NHÚNG CSS GIAO DIỆN "HOÀI THU"
-    // =========================================================================
-    const style = document.createElement('style');
-    style.id = 'theme-hoaithu-style';
-    style.innerHTML = `
-        /* --- INTRO BANNER YÊU THƯƠNG --- */
-        #ht-banner { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: radial-gradient(circle, #fff0f3 0%, #ffc2d1 100%); z-index: 999999; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; pointer-events: none; animation: fadeOutBanner 0.8s ease 4s forwards; }
-        .ht-text-main { font-family: 'Georgia', serif; font-size: clamp(35px, 8vw, 80px); font-weight: bold; color: #ff4d6d; text-shadow: 2px 2px 10px rgba(255, 77, 109, 0.3); margin-bottom: 10px; animation: softZoom 1s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
-        .ht-text-sub { font-family: 'Arial', sans-serif; font-size: clamp(14px, 3.5vw, 24px); font-weight: normal; color: #c9184a; letter-spacing: 2px; opacity: 0; animation: fadeInText 1s ease 1s forwards; }
+    /* =========================================================================
+           HOẠT CẢNH TỎ TÌNH: BÉ TRAI & BÉ GÁI
+           ========================================================================= */
+        #love-story-scene { position: absolute; top: -60px; left: 0; width: 100%; height: 60px; pointer-events: none; z-index: 110; overflow: hidden; }
         
-        @keyframes softZoom { 0% { transform: scale(0.8); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
-        @keyframes fadeInText { 0% { opacity: 0; transform: translateY(10px); } 100% { opacity: 1; transform: translateY(0); } }
-        @keyframes fadeOutBanner { 0% { opacity: 1; } 100% { opacity: 0; visibility: hidden; } }
+        /* Bé gái ngồi trên nút giữa */
+        .cute-girl { position: absolute; left: 50%; bottom: 0px; transform: translateX(-50%); width: 35px; height: 45px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23ff4d6d' d='M12 4c1.11 0 2 .89 2 2s-.89 2-2 2-2-.89-2-2 .89-2 2-2m5 7c0-.55-.45-1-1-1H8c-.55 0-1 .45-1 1v5.5c0 .55.45 1 1 1h1v4.5c0 .55.45 1 1 1s1-.45 1-1V17h2v4.5c0 .55.45 1 1 1s1-.45 1-1V17h1c.55 0 1-.45 1-1V11z'/%3E%3C/svg%3E"); background-size: contain; background-repeat: no-repeat; background-position: bottom center; filter: drop-shadow(0 4px 4px rgba(0,0,0,0.3)); z-index: 15; }
+        
+        /* Cụm Bé trai và Trái tim */
+        .boy-wrap { position: absolute; bottom: 0; left: -50px; width: 50px; height: 45px; animation: boy-walks 5s infinite cubic-bezier(0.4, 0, 0.2, 1); }
+        .cute-boy { width: 35px; height: 45px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%233b82f6' d='M12 4c1.11 0 2 .89 2 2s-.89 2-2 2-2-.89-2-2 .89-2 2-2m4 7v6c0 .55-.45 1-1 1h-2v5c0 .55-.45 1-1 1s-1-.45-1-1v-5H9c-.55 0-1-.45-1-1v-6c0-.55.45-1 1-1h6c.55 0 1 .45 1 1z'/%3E%3C/svg%3E"); background-size: contain; background-repeat: no-repeat; background-position: bottom center; animation: boy-bob 0.3s infinite alternate; filter: drop-shadow(0 4px 4px rgba(0,0,0,0.3)); }
+        
+        /* Trái tim bé trai cầm và tung lên */
+        .throw-heart { position: absolute; top: 10px; right: 0px; width: 16px; height: 16px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='%23ff0000' d='M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z'/%3E%3C/svg%3E"); background-size: contain; background-repeat: no-repeat; opacity: 0; animation: heart-fly 5s infinite; filter: drop-shadow(0 2px 5px rgba(255,0,0,0.6)); z-index: 20;}
 
-        /* --- BOTTOM NAV & NÚT TRÁI TIM --- */
-        body.glass-ui-mode #tgdd-bottom-nav, #tgdd-bottom-nav { background: linear-gradient(135deg, #fff0f3, #ffe5ec) !important; border-top: 1px solid #ffb3c6 !important; box-shadow: 0 -5px 20px rgba(255, 179, 198, 0.3) !important;}
-        body.glass-ui-mode #tgdd-bottom-nav .nav-item svg, #tgdd-bottom-nav .nav-item svg { stroke: #ff758f !important; fill: transparent !important; }
-        body.glass-ui-mode #tgdd-bottom-nav .nav-item, #tgdd-bottom-nav .nav-item { color: #ff758f !important; font-weight: bold; }
-        
-        /* Cục tròn ở giữa biến thành trái tim viền sáng */
-        body.glass-ui-mode .nav-icon-circle, .nav-icon-circle { background: linear-gradient(135deg, #ff4d6d, #c9184a) !important; border: 3px solid #fff !important; box-shadow: 0 0 20px rgba(255, 77, 109, 0.6) !important; overflow: visible !important; }
-        body.glass-ui-mode .nav-icon-circle svg, .nav-icon-circle svg { stroke: #fff !important; }
-        
-        /* Hiệu ứng nhịp đập trái tim (Heartbeat) đính kèm trên nút tròn */
-        body.glass-ui-mode .nav-icon-circle::before, .nav-icon-circle::before { 
-            content: ''; position: absolute; top: -15px; right: -15px; width: 30px; height: 30px; 
-            background-image: url("${SVG_HEART}") !important; background-size: contain !important; background-repeat: no-repeat !important; 
-            z-index: 100 !important; pointer-events: none; filter: drop-shadow(0px 2px 4px rgba(201, 24, 74, 0.5)) !important;
-            animation: heartbeat 1.5s infinite;
-        }
-        @keyframes heartbeat { 
-            0% { transform: scale(1); } 
-            15% { transform: scale(1.3); } 
-            30% { transform: scale(1); } 
-            45% { transform: scale(1.3); } 
-            60%, 100% { transform: scale(1); } 
+        /* Trái tim bung tỏa khi bé gái nhận được */
+        .burst-heart { position: absolute; left: 50%; bottom: 25px; width: 14px; height: 14px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='%23ff0000' d='M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z'/%3E%3C/svg%3E"); background-size: contain; background-repeat: no-repeat; opacity: 0; animation: burst 5s infinite; z-index: 20;}
+        .bh-1 { margin-left: -20px; animation-delay: 0.1s; }
+        .bh-2 { margin-left: 5px; animation-delay: 0.2s; }
+
+        /* --- KỊCH BẢN KEYFRAMES --- */
+        @keyframes boy-walks {
+            0% { left: -50px; opacity: 1; }
+            35% { left: calc(50% - 60px); opacity: 1; } /* Chạy tới gần bé gái */
+            65% { left: calc(50% - 60px); opacity: 1; } /* Đứng lại nhìn */
+            75% { opacity: 0; } /* Ngại ngùng biến mất */
+            100% { left: -50px; opacity: 0; }
         }
 
-        /* --- MƯA CÁNH HOA VÀ TRÁI TIM --- */
-        #romantic-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 99999; overflow: hidden; }
-        .romantic-item { position: absolute; top: -50px; opacity: 0.7; animation: float-down linear infinite; }
-        @keyframes float-down { 
-            0% { transform: translateY(-50px) translateX(0) rotate(0deg); opacity: 0; } 
-            10% { opacity: 1; }
-            90% { opacity: 0.8; }
-            100% { transform: translateY(110vh) translateX(60px) rotate(360deg); opacity: 0; } 
+        @keyframes boy-bob { 0% { transform: translateY(0); } 100% { transform: translateY(-4px); } }
+
+        @keyframes heart-fly {
+            0%, 34% { transform: translate(0, 0) scale(1); opacity: 0; }
+            35% { transform: translate(0, 0) scale(1); opacity: 1; } /* Cầm trên tay */
+            40% { transform: translate(0, 0) scale(1.3); opacity: 1; } /* Chuẩn bị tung */
+            48% { transform: translate(30px, -40px) scale(1.5) rotate(15deg); opacity: 1; } /* Tung lên vòng cung */
+            52% { transform: translate(45px, -15px) scale(0); opacity: 0; } /* Rơi vào bé gái */
+            100% { opacity: 0; }
+        }
+
+        @keyframes burst {
+            0%, 50% { transform: translateY(0) scale(0); opacity: 0; }
+            52% { transform: translateY(0) scale(1); opacity: 1; } /* Bắt đầu nổ */
+            65% { transform: translateY(-25px) scale(1.5); opacity: 0; } /* Bay lên và tan biến */
+            100% { opacity: 0; }
         }
 
         /* =========================================================================
@@ -150,15 +148,33 @@
     };
 
     // =========================================================================
-    // 5. CHẠY MÀN CHÀO SÂN (ĐÃ BỎ MƯA CÁNH HOA)
+    // 5. GẮN CÂU CHUYỆN TÌNH YÊU LÊN THANH BOTTOM NAV
     // =========================================================================
-    // Lời chào khi vừa mở trang
-    if (!document.getElementById('ht-banner')) {
-        const banner = document.createElement('div'); banner.id = 'ht-banner';
-        banner.innerHTML = `<div class="ht-text-main">Chào Hoài Thu</div><div class="ht-text-sub">Ngày mới tốt lành nhé! ✨</div>`;
-        document.body.appendChild(banner);
-        setTimeout(() => { if (banner) banner.remove(); }, 4800);
-    }
+    const initLoveStory = setInterval(() => {
+        const bottomNav = document.getElementById('tgdd-bottom-nav');
+        if (bottomNav && !document.getElementById('love-story-scene')) {
+            const scene = document.createElement('div');
+            scene.id = 'love-story-scene';
+            
+            scene.innerHTML = `
+                <!-- Bé gái ngồi giữa -->
+                <div class="cute-girl"></div>
+                
+                <!-- Bé trai chạy tới -->
+                <div class="boy-wrap">
+                    <div class="cute-boy"></div>
+                    <div class="throw-heart"></div> <!-- Trái tim tung lên -->
+                </div>
+
+                <!-- Tim nổ tung khi nhận được -->
+                <div class="burst-heart bh-1"></div>
+                <div class="burst-heart bh-2"></div>
+            `;
+            
+            bottomNav.appendChild(scene);
+            clearInterval(initLoveStory);
+        }
+    }, 500);
 
     console.log("Đã kích hoạt Theme Hoài Thu! 💕🌸");
 })();

@@ -108,7 +108,7 @@
             overlay.innerHTML = `
                 <div class="big-heart"></div>
                 <div id="theme-status-text">Đang chuẩn bị báo cáo cho Hoài Thu...</div>
-                <div id="theme-status-sub">Đợi một chút nhé công chúa! 💕</div>
+                <div id="theme-status-sub">Đợi một chút nhé em bé! 💕</div>
             `;
             document.body.appendChild(overlay);
 
@@ -132,7 +132,7 @@
             const overlay = document.getElementById('theme-loading-overlay');
             if (overlay) {
                 // Đổi lời nhắn khi tải xong
-                document.getElementById('theme-status-text').innerHTML = "Chúc Hoài Thu một ngày làm việc<br>thật vui vẻ và nhẹ nhàng nhé! 🌸";
+                document.getElementById('theme-status-text').innerHTML = "Chúc Hoài Thu một ngày làm việc<br>thật vui vẻ và nhẹ nhàng! 🌸";
                 document.getElementById('theme-status-sub').innerText = "";
                 
                 // Níu lại 1.5 giây để cô ấy kịp đọc lời chúc

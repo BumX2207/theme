@@ -150,7 +150,7 @@
     };
 
     // =========================================================================
-    // 5. CHẠY MÀN CHÀO SÂN & CƠN MƯA CÁNH HOA
+    // 5. CHẠY MÀN CHÀO SÂN (ĐÃ BỎ MƯA CÁNH HOA)
     // =========================================================================
     // Lời chào khi vừa mở trang
     if (!document.getElementById('ht-banner')) {
@@ -159,32 +159,6 @@
         document.body.appendChild(banner);
         setTimeout(() => { if (banner) banner.remove(); }, 4800);
     }
-
-    const romanticIcons = [SVG_HEART, SVG_PETAL, SVG_SPARKLE, SVG_PETAL]; 
-
-    // Tạo cơn mưa cánh hoa và trái tim
-    const checkDomReady = setInterval(() => {
-        const bottomNav = document.getElementById('tgdd-bottom-nav');
-        if (bottomNav) {
-            if (!document.getElementById('romantic-container')) {
-                const sky = document.createElement('div'); sky.id = 'romantic-container'; document.body.appendChild(sky);
-                for (let i = 0; i < 25; i++) {
-                    let item = document.createElement('div'); item.className = 'romantic-item';
-                    item.style.backgroundImage = `url("${romanticIcons[Math.floor(Math.random() * romanticIcons.length)]}")`;
-                    item.style.backgroundSize = 'contain';
-                    item.style.backgroundRepeat = 'no-repeat';
-                    
-                    let size = Math.random() * 15 + 15; // 15px - 30px
-                    item.style.width = size + 'px'; item.style.height = size + 'px';
-                    item.style.left = Math.random() * 100 + 'vw';
-                    item.style.animationDuration = (Math.random() * 6 + 6) + 's'; // Rơi chầm chậm lãng mạn
-                    item.style.animationDelay = Math.random() * 5 + 's';
-                    sky.appendChild(item);
-                }
-            }
-            clearInterval(checkDomReady);
-        }
-    }, 500);
 
     console.log("Đã kích hoạt Theme Hoài Thu! 💕🌸");
 })();

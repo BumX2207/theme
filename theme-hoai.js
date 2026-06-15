@@ -33,28 +33,63 @@
         @keyframes fadeInText { 0% { opacity: 0; transform: translateY(10px); } 100% { opacity: 1; transform: translateY(0); } }
         @keyframes fadeOutBanner { 0% { opacity: 1; } 100% { opacity: 0; visibility: hidden; } }
 
-        /* --- BOTTOM NAV & NÚT TRÒN TRÁI TIM NẮNG --- */
+        /* --- BOTTOM NAV & BIẾN NÚT TRÒN THÀNH TRÁI TIM ĐẬP NHỊP --- */
         body.glass-ui-mode #tgdd-bottom-nav, #tgdd-bottom-nav { background: linear-gradient(135deg, #fffdf0, #fcf8e3) !important; border-top: 1px solid #ffe082 !important; box-shadow: 0 -5px 20px rgba(254, 250, 224, 0.5) !important;}
         body.glass-ui-mode #tgdd-bottom-nav .nav-item svg, #tgdd-bottom-nav .nav-item svg { stroke: #d48c00 !important; fill: transparent !important; }
         body.glass-ui-mode #tgdd-bottom-nav .nav-item, #tgdd-bottom-nav .nav-item { color: #b5820f !important; font-weight: bold; }
         
-        /* Cục tròn ở giữa biến thành trái tim viền sáng vàng hoàng kim */
-        body.glass-ui-mode .nav-icon-circle, .nav-icon-circle { background: linear-gradient(135deg, #ffb703, #fb8500) !important; border: 3px solid #fff !important; box-shadow: 0 0 20px rgba(255, 183, 3, 0.7) !important; overflow: visible !important; }
-        body.glass-ui-mode .nav-icon-circle svg, .nav-icon-circle svg { stroke: #fff !important; }
-        
-        /* Hiệu ứng nhịp đập trái tim vàng mật ong đính kèm trên nút tròn */
-        body.glass-ui-mode .nav-icon-circle::before, .nav-icon-circle::before { 
-            content: ''; position: absolute; top: -15px; right: -15px; width: 30px; height: 30px; 
-            background-image: url("${SVG_HEART_GOLD}") !important; background-size: contain !important; background-repeat: no-repeat !important; 
-            z-index: 100 !important; pointer-events: none; filter: drop-shadow(0px 2px 4px rgba(251, 133, 0, 0.4)) !important;
-            animation: heartbeat 1.5s infinite;
+        /* Ẩn hình tròn và viền xám mặc định, biến thành khung chứa trái tim */
+        body.glass-ui-mode .nav-icon-circle, .nav-icon-circle { 
+            background: transparent !important; 
+            border: none !important; 
+            box-shadow: none !important; 
+            overflow: visible !important; 
+            position: relative !important;
+            transform: translateY(-15px) !important;
+            animation: heartbeat-button 1.5s infinite !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            width: 48px !important;
+            height: 48px !important;
         }
-        @keyframes heartbeat { 
-            0% { transform: scale(1); } 
-            15% { transform: scale(1.3); } 
-            30% { transform: scale(1); } 
-            45% { transform: scale(1.3); } 
-            60%, 100% { transform: scale(1); } 
+        
+        /* Hiệu ứng nhịp đập co dãn nhịp nhàng cho cả nút trái tim lớn */
+        @keyframes heartbeat-button { 
+            0% { transform: translateY(-15px) scale(1); } 
+            15% { transform: translateY(-15px) scale(1.15); } 
+            30% { transform: translateY(-15px) scale(1); } 
+            45% { transform: translateY(-15px) scale(1.15); } 
+            60%, 100% { transform: translateY(-15px) scale(1); } 
+        }
+
+        /* Định hình lại icon báo cáo nằm đè chuẩn hóa trên trái tim vàng */
+        body.glass-ui-mode .nav-icon-circle svg, .nav-icon-circle svg { 
+            stroke: #fff !important; 
+            position: relative !important;
+            z-index: 2 !important;
+            margin: 0 !important;
+            width: 22px !important;
+            height: 22px !important;
+        }
+        
+        /* Sử dụng Pseudo-element để vẽ nền hình trái tim vàng tỏa sáng lung linh */
+        body.glass-ui-mode .nav-icon-circle::before, .nav-icon-circle::before { 
+            content: '' !important; 
+            position: absolute !important; 
+            top: 0 !important; 
+            left: 0 !important; 
+            width: 100% !important; 
+            height: 100% !important; 
+            background-image: url("${SVG_HEART_GOLD}") !important; 
+            background-size: contain !important; 
+            background-repeat: no-repeat !important; 
+            background-position: center !important;
+            z-index: 1 !important; 
+            pointer-events: none; 
+            filter: drop-shadow(0px 0px 10px rgba(255, 183, 3, 0.8)) !important;
+            animation: none !important; 
+            transform: none !important;
         }
 
         /* --- MƯA SAO LẤP LÁNH & HOA RƠI --- */
@@ -104,7 +139,6 @@
             const overlay = document.createElement('div');
             overlay.id = 'theme-loading-overlay';
             
-            // Khôi phục lại đầy đủ cấu trúc thẻ chứa để tránh lỗi unhandled type null ở hàm kết thúc
             overlay.innerHTML = `
                 <div class="big-heart-gold"></div>
                 <div id="theme-status-text">Chờ một chút nhé, cô gái đáng yêu! ☀️💛...</div>
@@ -176,9 +210,9 @@
         let size = (Math.random() * 12 + 12) + 'px';
         item.style.width = size; item.style.height = size;
         
-        // Cấu hình vị trí và thời gian rơi (ĐÃ KHẮC PHỤC LỖI CÚ PHÁP CHUỖI 's')
+        // Cấu hình vị trí và thời gian rơi (Đoạn nối chuỗi thời gian đã an toàn)
         item.style.left = (Math.random() * 95) + 'vw';
-        item.style.animationDuration = (Math.random() * 6 + 4) + 's'; // Chuyển thành cộng chuỗi chuẩn
+        item.style.animationDuration = (Math.random() * 6 + 4) + 's'; 
         item.style.animationDelay = `-${Math.random() * 8}s`;
         
         romanticContainer.appendChild(item);

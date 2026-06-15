@@ -104,10 +104,11 @@
             const overlay = document.createElement('div');
             overlay.id = 'theme-loading-overlay';
             
-            // Lời nhắn lãng mạn
+            // Khôi phục lại đầy đủ cấu trúc thẻ chứa để tránh lỗi unhandled type null ở hàm kết thúc
             overlay.innerHTML = `
                 <div class="big-heart-gold"></div>
                 <div id="theme-status-text">Chờ một chút nhé, cô gái đáng yêu! ☀️💛...</div>
+                <div id="theme-status-sub"></div>
             `;
             document.body.appendChild(overlay);
 
@@ -132,7 +133,11 @@
             if (overlay) {
                 // Đổi lời nhắn khi tải xong
                 document.getElementById('theme-status-text').innerHTML = "Chúc Hoài Thu ngày mới rạng rỡ! ☀️🌻";
-                document.getElementById('theme-status-sub').innerText = "Nụ cười của em là niềm vui của anh! 💛";
+                
+                const statusSub = document.getElementById('theme-status-sub');
+                if (statusSub) {
+                    statusSub.innerText = "Nụ cười của em là niềm vui của anh! 💛";
+                }
                 
                 // Trì hoãn 1.6 giây để cô ấy cảm nhận trọn vẹn lời nhắn
                 setTimeout(() => {
@@ -171,9 +176,9 @@
         let size = (Math.random() * 12 + 12) + 'px';
         item.style.width = size; item.style.height = size;
         
-        // Cấu hình vị trí và thời gian rơi
+        // Cấu hình vị trí và thời gian rơi (ĐÃ KHẮC PHỤC LỖI CÚ PHÁP CHUỖI 's')
         item.style.left = (Math.random() * 95) + 'vw';
-        item.style.animationDuration = (Math.random() * 6 + 4)s; // Rơi chậm từ 4s đến 10s
+        item.style.animationDuration = (Math.random() * 6 + 4) + 's'; // Chuyển thành cộng chuỗi chuẩn
         item.style.animationDelay = `-${Math.random() * 8}s`;
         
         romanticContainer.appendChild(item);

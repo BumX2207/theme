@@ -9,10 +9,10 @@
     if (!isHomePage) return;
 
     // =========================================================================
-    // 2. KHAI BÁO TÀI NGUYÊN SVG (Tông vàng nắng ấm, dịu ngọt)
+    // 2. KHAI BÁO TÀI NGUYÊN SVG (Tông vàng nắng ấm, đính kèm viền trắng mềm mại)
     // =========================================================================
-    // Trái tim vàng mật ong ấm áp
-    const SVG_HEART_GOLD = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='%23FFB703' d='M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z'/%3E%3C/svg%3E";
+    // Trái tim vàng có viền trắng (stroke-width: 24) bo tròn cực nét
+    const SVG_HEART_GOLD = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='%23FFB703' stroke='%23FFFFFF' stroke-width='24' stroke-linejoin='round' d='M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z'/%3E%3C/svg%3E";
     // Hoa dã quỳ/hoa bồ công anh vàng nhạt dập dờn
     const SVG_FLOWER_GOLD = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='%23FFE082' d='M256 0c30 80 120 60 170 120 50 60 30 150 0 200-40 60-120 40-170 120-50-80-140-60-170-120-40-70-10-150 0-200 40-60 140-40 170-120z'/%3E%3C/svg%3E";
     // Ngôi sao vàng lấp lánh (Tia nắng)
@@ -73,7 +73,7 @@
             height: 22px !important;
         }
         
-        /* Sử dụng Pseudo-element để vẽ nền hình trái tim vàng tỏa sáng lung linh */
+        /* Sử dụng Pseudo-element để vẽ nền hình trái tim vàng tỏa sáng lung linh (Có viền trắng tích hợp) */
         body.glass-ui-mode .nav-icon-circle::before, .nav-icon-circle::before { 
             content: '' !important; 
             position: absolute !important; 

@@ -93,7 +93,11 @@
         }
 
         /* Ngọn nến phát sáng */
-        .candle-group { position: absolute; top: -38px; left: 50%; transform: translateX(-50%); display: flex; gap: 20px; z-index: 4; }
+        .candle-group { 
+            position: absolute; 
+            top: 115px !important; /* ĐÃ SỬA LỖI: Định vị nến cắm chính xác trên mặt bánh */
+            left: 50%; transform: translateX(-50%); display: flex; gap: 20px; z-index: 4; 
+        }
         .candle-stick { width: 8px; height: 35px; background: linear-gradient(to right, #e2e8f0, #cbd5e1); border-radius: 3px 3px 0 0; position: relative; }
         .candle-stick::before { content:''; position: absolute; top: -4px; left: 3.5px; width: 1px; height: 4px; background: #333; }
         
@@ -161,22 +165,6 @@
         .envelope.open .letter-paper { transform: translateY(-130px); opacity: 1; z-index: 10; }
 
         .letter-content { font-size: 13.5px; line-height: 1.8; color: #5c3d00; font-family: 'Times New Roman', Georgia, serif; font-style: italic; font-weight: bold; }
-        
-        /* --- ĐỒNG BỘ ĐỘNG CƠ CHẠY BÁO CÁO VINH DANH (GIFT BOX BLAST-OFF) --- */
-        /* Thay rocket bằng hộp quà nơ vàng lấp lánh */
-        .rocket-body.event-gift-theme {
-            background: none !important; animation: ship-shake 0.1s infinite alternate !important;
-        }
-        .rocket-body.event-gift-theme::after {
-            content: "🎁" !important; font-size: 55px !important; display: flex !important; justify-content: center; align-items: center; filter: drop-shadow(0 10px 20px rgba(255,117,140,0.8));
-        }
-        /* Thay đuôi lửa bằng chòm sao tinh vân lấp lánh */
-        .rocket-flame.event-gift-theme {
-            background: none !important; border: none !important; filter: drop-shadow(0 0 10px #ffebb3) !important;
-        }
-        .rocket-flame.event-gift-theme::after {
-            content: "✨" !important; font-size: 28px !important; color: #ffebb3 !important; display: block; animation: pulse-text 0.2s infinite alternate; text-align: center;
-        }
     `;
     document.head.appendChild(style);
 
@@ -223,14 +211,13 @@
     const currentUserId = getUserIdLocal();
     const isOwner = (currentUserId === '42060'); // Tài khoản của bạn có quyền test đi test lại
 
-    const path = window.location.pathname;
-    const isHomePage = path === '/' || path === '' || window.location.href.includes('/khoi-ban-hang-sub/-1');
+    // ĐỒNG BỘ MỚI: Kiểm tra xem hệ thống có đang chuẩn bị dựng báo cáo tạm thời không
+    const isPending = GM_getValue('tgdd_is_pending_render', false) || !!GM_getValue('tgdd_pending_report_data');
 
-    // Chỉ kích hoạt kịch bản sinh nhật khi ở Trang chủ
-    if (isHomePage) {
+    // Chỉ kích hoạt kịch bản thổi nến sinh nhật khi ở Trang chủ và KHÔNG PHẢI trong luồng chờ vẽ báo cáo (isPending)
+    if (isHomePage && !isPending) {
         const isSeen = localStorage.getItem('tgdd_bday_thu_seen_v1');
 
-        // Nếu chưa xem, HOẶC nếu là tài khoản của bạn (42060) đang thực hiện test
         if (!isSeen || isOwner) {
             
             // Hàm dựng cấu trúc HTML sân khấu phòng sinh nhật lãng mạn
@@ -298,14 +285,14 @@
                     const room = document.getElementById('bday-room');
                     const title = document.getElementById('bday-title');
 
-                    // 1. Tắt lửa và kích hoạt khói bốc lên
+                    // Tắt lửa và kích hoạt khói bốc lên
                     flames.forEach(f => { f.style.opacity = '0'; f.style.transform = 'scale(0)'; });
                     smokes.forEach(s => s.classList.add('rise'));
 
                     UI.showToast("💨 Phùuuu... Đèn nến đã được thổi tắt!");
                     actionBtn.style.display = 'none';
 
-                    // 2. Chuyển cảnh: Phòng sinh nhật biến mất, phong thư xuất hiện
+                    // Chuyển cảnh: Phòng sinh nhật biến mất, phong thư xuất hiện
                     setTimeout(() => {
                         room.style.transition = 'opacity 0.6s';
                         title.style.transition = 'opacity 0.6s';
@@ -327,7 +314,6 @@
                 // SỰ KIỆN 2: CLICK PHONG THƯ ĐỌC THƯ TÌNH
                 const envelope = document.getElementById('bday-envelope');
                 envelope.onclick = (e) => {
-                    // Chặn kích hoạt nếu click trúng nút Test lại bên trong tờ thư
                     const resetBtn = document.getElementById('btn-bday-reset-test');
                     if (e.target === resetBtn) return;
 
@@ -392,29 +378,43 @@
         const observer = new MutationObserver(() => {
             const ship = document.querySelector('.rocket-body');
             const flame = document.querySelector('.rocket-flame');
-            
-            // Ép đổi cấu trúc phi thuyền sang Hộp Quà thắt nơ vàng sự kiện
-            if (ship && !ship.classList.contains('event-gift-theme')) {
-                ship.classList.add('event-gift-theme');
+            const warpLines = document.querySelectorAll('.warp-line');
+
+            // ĐỒNG BỘ MỚI: Tẩy sạch hoàn toàn các hạt mưa thiên thạch để màn hình sinh nhật ấm áp, tinh khiết
+            warpLines.forEach(line => line.remove());
+
+            // ĐỒNG BỘ MỚI: Chuyển đổi cưỡng chế SVG phi thuyền thành HTML Div chứa Emoji Hộp Quà 🎁
+            if (ship && ship.tagName.toLowerCase() === 'svg') {
+                const giftDiv = document.createElement('div');
+                giftDiv.className = 'rocket-body event-gift-theme';
+                giftDiv.style.cssText = 'font-size: 60px; display: flex; align-items: center; justify-content: center; filter: drop-shadow(0 15px 25px rgba(255, 117, 140, 0.9)); animation: ship-shake 0.1s infinite alternate; cursor: pointer;';
+                giftDiv.innerHTML = '🎁';
+                ship.parentNode.replaceChild(giftDiv, ship);
             }
-            if (flame && !flame.classList.contains('event-gift-theme')) {
-                flame.classList.add('event-gift-theme');
+
+            // ĐỒNG BỘ MỚI: Chuyển đổi cưỡng chế SVG đuôi lửa thành Ngôi Sao Lấp Lánh ✨
+            if (flame && flame.tagName.toLowerCase() === 'svg') {
+                const starDiv = document.createElement('div');
+                starDiv.className = 'rocket-flame event-gift-theme';
+                starDiv.style.cssText = 'font-size: 30px; display: flex; align-items: center; justify-content: center; filter: drop-shadow(0 5px 15px rgba(255, 235, 179, 1)); animation: flame-flicker 0.05s infinite alternate; margin-top: -10px;';
+                starDiv.innerHTML = '✨';
+                flame.parentNode.replaceChild(starDiv, flame);
             }
 
             // Thay đổi dòng chữ trạng thái tải trong Focus Mode
             const spaceText = document.getElementById('tgdd-space-loading-text');
             if (spaceText && spaceText.innerText !== "ĐANG CHUẨN BỊ QUÀ SINH NHẬT...") {
-                spaceText.innerText = "ĐANG CHUẨN BỊ QUÀ SINH NHẬT...";
                 spaceText.style.color = "#ff758c";
                 spaceText.style.textShadow = "0 0 15px rgba(255,117,140,1)";
+                spaceText.innerText = "ĐANG CHUẨN BỊ QUÀ SINH NHẬT...";
             }
 
             // Đồng hóa mốc hướng dẫn dừng khẩn cấp
             const stopIns = document.getElementById('tgdd-space-stop-instruction');
             if (stopIns && stopIns.innerText !== "⚠️ NHẤP VÀO HỘP QUÀ ĐỂ DỪNG LẠI!") {
-                stopIns.innerText = "⚠️ NHẤP VÀO HỘP QUÀ ĐỂ DỪNG LẠI!";
                 stopIns.style.color = "#ffebb3";
                 stopIns.style.textShadow = "0 0 10px rgba(255,235,179,0.8), 0 1px 3px rgba(0,0,0,0.8)";
+                stopIns.innerText = "⚠️ NHẤP VÀO HỘP QUÀ ĐỂ DỪNG LẠI!";
             }
         });
         observer.observe(document.body, { childList: true, subtree: true });
@@ -424,6 +424,49 @@
         observeAndTransformSpaceship();
     } else {
         window.addEventListener('DOMContentLoaded', observeAndTransformSpaceship);
+    }
+
+
+    // =========================================================================
+    // ĐỒNG BỘ MỚI: GHI ĐÈ HOẠT ẢNH HOÀN THÀNH BÁO CÁO (GIFT BOX BURST TO LIFE)
+    // =========================================================================
+    if (window.UI) {
+        // Ghi đè phương thức hoàn thành báo cáo mặc định để bung mở pháo hoa nơ vàng
+        UI.showSuccessTick = (callback) => {
+            const shipWrapper = document.getElementById('tgdd-spaceship-wrapper');
+            if (!shipWrapper) { if (callback) callback(); return; }
+
+            const gift = shipWrapper.querySelector('.event-gift-theme.rocket-body');
+            const star = shipWrapper.querySelector('.event-gift-theme.rocket-flame');
+
+            // 1. Pháo nổ nắp hộp quà: Đổi 🎁 thành 🎉 bung nở hoành tráng
+            if (gift) {
+                gift.innerHTML = '🎉';
+                gift.style.fontSize = '80px';
+                gift.style.animation = 'none';
+                gift.style.transition = 'transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                gift.style.transform = 'scale(1.3)';
+            }
+            // 2. Chùm tia sáng tinh tú bùng to lấp lánh
+            if (star) {
+                star.innerHTML = '✨🌟✨';
+                star.style.fontSize = '45px';
+                star.style.animation = 'none';
+            }
+
+            // 3. Chờ 0.5s để người xem nhìn thấy khoảnh khắc nổ pháo hoa rồi mới phóng vút thẳng lên trời
+            setTimeout(() => {
+                shipWrapper.classList.add('blast-off');
+                
+                // Tắt bộ đếm thời gian góc trên bên phải
+                const topTimer = document.getElementById('tgdd-top-right-timer');
+                if (topTimer) topTimer.classList.remove('show');
+
+                setTimeout(() => {
+                    if (callback) callback();
+                }, 600); // Khoảng thời gian hộp quà phóng khuất mốc trên màn hình
+            }, 500);
+        };
     }
 
 })();

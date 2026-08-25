@@ -1,6 +1,6 @@
 /**
  * ==============================================================================
- * THEME: PHÀM NHÂN TU TIÊN - CHƯỞNG THIÊN KIẾM TRẬN
+ * THEME: PHÀM NHÂN TU TIÊN - CHƯỞNG THIÊN KIẾM TRẬN (V1.1 - FIX FONT CONTRAST)
  * Lấy cảm hứng từ: Hoạt hình 3D Phàm Nhân Tu Tiên (Hàn Lập)
  * Tông màu: Lục Bảo Tiên Khí (Jade Emerald) & Kim Cổ Trận Pháp
  * ==============================================================================
@@ -107,11 +107,14 @@
 
         /* ================= TIÊN THẠCH TRUYỀN PHÁP (MODALS) ================= */
         .tgdd-modal-content, .tgdd-msg-content, .tgdd-select-content, .tgdd-deploy-content {
-            background: linear-gradient(145deg, rgba(6, 78, 59, 0.92), rgba(2, 44, 34, 0.95)) !important;
+            background: linear-gradient(145deg, rgba(6, 78, 59, 0.95), rgba(2, 44, 34, 0.98)) !important;
             border: 2px solid rgba(251, 191, 36, 0.7) !important;
             border-radius: 24px !important;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), inset 0 0 20px rgba(16, 185, 129, 0.3) !important;
             color: #ecfdf5 !important;
+        }
+        .tgdd-modal-content::before, .tgdd-msg-content::before, .tgdd-select-content::before, .tgdd-deploy-content::before {
+            background: #022c22 !important; /* Lớp nền đệm tối */
         }
         .tgdd-modal-header, .tgdd-msg-title {
             color: #fbbf24 !important;
@@ -124,16 +127,89 @@
             border-left-color: #fbbf24 !important;
         }
 
-        /* Nút xuất chiêu / Lưu */
-        .tgdd-msg-btn, #btn-save-all, .tgdd-btn-save, .tgdd-btn-run {
+        /* ================= FIX ĐẶC BIỆT: MODAL CHỌN LOẠI BÁO CÁO ================= */
+        #md-tab-auto, #md-tab-excel {
+            background: rgba(6, 78, 59, 0.7) !important;
+            color: #a7f3d0 !important;
+            font-weight: 900 !important;
+        }
+        #md-tab-auto[style*="border-bottom:3px solid"], #md-tab-auto[style*="border-bottom: 3px solid"],
+        #md-tab-excel[style*="border-bottom:3px solid"], #md-tab-excel[style*="border-bottom: 3px solid"] {
+            background: rgba(6, 78, 59, 0.95) !important;
+            color: #fbbf24 !important;
+            border-bottom: 3px solid #fbbf24 !important;
+        }
+
+        /* Từng dòng Checkbox - Thiết kế thẻ bài Tiên Đạo */
+        .tgdd-chk-group {
+            background: rgba(6, 78, 59, 0.6) !important;
+            border: 1.5px solid rgba(52, 211, 153, 0.4) !important;
+            border-radius: 10px !important;
+            margin-bottom: 8px !important;
+            padding: 10px 12px !important;
+            transition: all 0.2s ease !important;
+        }
+        .tgdd-chk-group:hover {
+            background: rgba(16, 185, 129, 0.25) !important;
+            border-color: #fbbf24 !important;
+            box-shadow: 0 0 12px rgba(52, 211, 153, 0.4) !important;
+        }
+
+        /* Chữ của các dòng chọn - TRẮNG SÁNG & DỄ ĐỌC 100% */
+        .tgdd-chk-group label {
+            color: #ffffff !important;
+            font-weight: 800 !important;
+            font-size: 14px !important;
+            letter-spacing: 0.3px !important;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9) !important;
+        }
+
+        .tgdd-chk-group input[type="checkbox"] {
+            width: 18px !important;
+            height: 18px !important;
+            accent-color: #10b981 !important;
+            cursor: pointer !important;
+        }
+
+        /* Thẻ đặc biệt: ALL & Lưu Data (Viền Kim Lôi Hoàng Kim) */
+        .tgdd-chk-group:has(#chk-all-save) {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.25), rgba(6, 78, 59, 0.8)) !important;
+            border: 1.5px solid #fbbf24 !important;
+        }
+        .tgdd-chk-group label[for="chk-all-save"] {
+            color: #fbbf24 !important;
+            font-weight: 900 !important;
+            text-shadow: 0 0 8px rgba(251, 191, 36, 0.6) !important;
+        }
+
+        /* Thẻ đặc biệt: Báo cáo Test Admin */
+        .tgdd-chk-group:has(#chk-test) {
+            background: rgba(220, 38, 38, 0.2) !important;
+            border: 1.5px solid #f87171 !important;
+        }
+        .tgdd-chk-group label[for="chk-test"] {
+            color: #fca5a5 !important;
+        }
+
+        /* Nút Bắt đầu chạy & Hủy */
+        .tgdd-btn-cancel {
+            background: linear-gradient(135deg, #dc2626, #991b1b) !important;
+            color: #ffffff !important;
+            font-weight: 800 !important;
+            border: 1px solid #f87171 !important;
+            border-radius: 10px !important;
+            box-shadow: 0 4px 10px rgba(220, 38, 38, 0.4) !important;
+        }
+        .tgdd-btn-run, .tgdd-msg-btn, #btn-save-all, .tgdd-btn-save {
             background: linear-gradient(135deg, #059669 0%, #047857 50%, #064e3b 100%) !important;
             color: #fbbf24 !important;
             font-weight: 900 !important;
             border: 1.5px solid #fbbf24 !important;
+            border-radius: 10px !important;
             box-shadow: 0 4px 20px rgba(5, 150, 105, 0.5), inset 0 0 8px rgba(251, 191, 36, 0.3) !important;
             text-transform: uppercase;
         }
-        .tgdd-msg-btn:hover, #btn-save-all:hover {
+        .tgdd-btn-run:hover, .tgdd-msg-btn:hover {
             box-shadow: 0 0 25px rgba(251, 191, 36, 0.7) !important;
             transform: scale(1.02);
         }
@@ -146,7 +222,7 @@
     `;
     document.head.appendChild(themeStyle);
 
-    // 2. MÀN HÌNH LOADING: NGƯNG TỤ LINH KHÍ ĐẠI TRẬN (SPIRITUAL SWORD FORMATION)
+    // 2. MÀN HÌNH LOADING: NGƯNG TỤ LINH KHÍ ĐẠI TRẬN
     window.TGDD_THEME = {
         name: "Phàm Nhân Tu Tiên",
         startLoading: function(isStatic) {
@@ -163,11 +239,8 @@
                 `;
                 overlay.innerHTML = `
                     <div style="position:relative; width: 120px; height: 120px; display:flex; align-items:center; justify-content:center;">
-                        <!-- Vòng xoay bát quái linh trận ngoài -->
                         <div style="position:absolute; width: 100%; height: 100%; border-radius: 50%; border: 2px dashed rgba(251, 191, 36, 0.6); animation: spinFormation 8s linear infinite;"></div>
-                        <!-- Vòng xoay kiếm khí ngọc bích trong -->
                         <div style="position:absolute; width: 85%; height: 85%; border-radius: 50%; border: 3px solid transparent; border-top-color: #34d399; border-bottom-color: #10b981; animation: spinReverse 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite; box-shadow: 0 0 25px rgba(52, 211, 153, 0.7);"></div>
-                        <!-- Tâm bảo vật Chưởng Thiên Bình -->
                         <div style="font-size: 38px; filter: drop-shadow(0 0 12px #fbbf24); animation: floatVessel 2s ease-in-out infinite alternate;">🏺</div>
                     </div>
 

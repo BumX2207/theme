@@ -1,6 +1,6 @@
 /**
  * ==============================================================================
- * THEME: TIÊN NGHỊCH - SÁT LỤC HÓA MA (RENEGADE IMMORTAL)
+ * THEME: TIÊN NGHỊCH - SÁT LỤC HÓA MA (V1.2 - FIX TOÀN DIỆN MODAL)
  * Lấy cảm hứng từ: Hoạt hình 3D Tiên Nghịch (Vương Lâm - Thiên Nghịch Châu)
  * Tông màu: Tím Hư Không (Void Purple) & Đỏ Huyết Sát (Crimson Lightning)
  * ==============================================================================
@@ -11,7 +11,6 @@
 
     console.log("[THEME] ⚡ Đang thức tỉnh Ma Đạo: Tiên Nghịch - Cực Cảnh Sát Lục...");
 
-    // 1. INJECT CSS MA ĐẠO NGHỊCH THIÊN & HUYẾT LÔI
     const themeStyle = document.createElement('style');
     themeStyle.id = 'tgdd-theme-tien-nghich';
     themeStyle.innerHTML = `
@@ -36,7 +35,6 @@
             box-shadow: 0 -5px 30px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(239, 68, 68, 0.5), 0 0 20px rgba(168, 85, 247, 0.25) !important;
         }
 
-        /* Chữ và Icon phong cách Huyết Kiếm & Ma Đồng */
         .nav-item, .rpt-nav-item, #btn-menu {
             color: #e9d5ff !important;
             font-weight: 800 !important;
@@ -47,7 +45,6 @@
             filter: drop-shadow(0 0 5px rgba(192, 132, 252, 0.5));
         }
 
-        /* Nút Tab đang Active - Huyết Ma Tỏa Sáng */
         .rpt-nav-item.active {
             color: #ef4444 !important;
             transform: translateY(-5px);
@@ -77,7 +74,7 @@
 
         /* ================= HUYẾT MA ĐIỆN (SIDEBAR MENU) ================= */
         #tgdd-sidebar-menu {
-            background: rgba(15, 3, 28, 0.8) !important;
+            background: rgba(15, 3, 28, 0.85) !important;
             backdrop-filter: blur(25px) saturate(200%) !important;
             -webkit-backdrop-filter: blur(25px) saturate(200%) !important;
             border-right: 1.5px solid rgba(168, 85, 247, 0.4) !important;
@@ -94,7 +91,6 @@
         .sidebar-title {
             color: #f43f5e !important;
             text-shadow: 0 0 12px rgba(244, 63, 94, 0.6);
-            font-family: 'Segoe UI', Tahoma, sans-serif;
             letter-spacing: 1.5px;
         }
         .tgdd-menu-item {
@@ -106,26 +102,128 @@
             border-left: 3px solid #ef4444;
         }
 
-        /* ================= PHÙ ĐIÊU CỔ THẦN (MODALS & POPUPS) ================= */
-        .tgdd-modal-content, .tgdd-msg-content, .tgdd-select-content, .tgdd-deploy-content {
-            background: linear-gradient(145deg, rgba(30, 8, 56, 0.96), rgba(12, 2, 23, 0.98)) !important;
-            border: 2px solid rgba(168, 85, 247, 0.7) !important;
+        /* =========================================================================
+           THIẾT KẾ TOÀN DIỆN CHO TẤT CẢ CÁC MODAL (KHAI BÁO, THÔNG BÁO, ĐIỂM...)
+           ========================================================================= */
+        .tgdd-modal-content, .tgdd-msg-content, .tgdd-select-content, .tgdd-deploy-content, .time-modal-content {
+            background: linear-gradient(145deg, #1f0438 0%, #0d0117 100%) !important;
+            border: 2px solid rgba(168, 85, 247, 0.8) !important;
             border-radius: 24px !important;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.95), inset 0 0 20px rgba(239, 68, 68, 0.35) !important;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.98), inset 0 0 25px rgba(239, 68, 68, 0.3) !important;
             color: #f3e8ff !important;
         }
         .tgdd-modal-content::before, .tgdd-msg-content::before, .tgdd-select-content::before, .tgdd-deploy-content::before {
-            background: #0d0117 !important;
+            background: #0d0117 !important; /* Xóa bỏ mảng nền trắng đè */
+            border-radius: 18px !important;
         }
+
+        /* Nút đóng modal tròn */
+        .tgdd-btn-close, .tgdd-msg-close {
+            background: rgba(46, 8, 84, 0.8) !important;
+            color: #f43f5e !important;
+            border: 1px solid #ef4444 !important;
+            box-shadow: 0 0 10px rgba(239, 68, 68, 0.3) !important;
+        }
+        .tgdd-btn-close:hover, .tgdd-msg-close:hover {
+            background: #ef4444 !important;
+            color: #fff !important;
+        }
+
         .tgdd-modal-header, .tgdd-msg-title {
             color: #f43f5e !important;
             border-bottom: 2px solid rgba(168, 85, 247, 0.5) !important;
-            text-shadow: 0 0 10px rgba(244, 63, 94, 0.6);
+            text-shadow: 0 0 12px rgba(244, 63, 94, 0.6);
         }
+
+        /* Tiêu đề từng mục trong Khai báo */
         .tgdd-section-title {
-            color: #c084fc !important;
-            background: rgba(46, 8, 84, 0.65) !important;
-            border-left-color: #ef4444 !important;
+            color: #f43f5e !important;
+            background: rgba(46, 8, 84, 0.8) !important;
+            border-left: 4px solid #ef4444 !important;
+            font-weight: 900 !important;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-radius: 4px;
+        }
+
+        /* Nhãn hiển thị của các ô nhập liệu (Labels) */
+        .tgdd-form-group label, .tgdd-checkbox-label, label {
+            color: #d8b4fe !important;
+            font-weight: bold !important;
+            font-size: 11.5px !important;
+        }
+
+        /* Hộp nhập liệu Textbox & Select */
+        .tgdd-form-group input, .tgdd-form-group select, 
+        .tgdd-input-table input, .tgdd-input-table select,
+        #cfg-target-rate, #cfg-image-folder-id, textarea {
+            background: rgba(20, 4, 38, 0.95) !important;
+            border: 1.5px solid rgba(168, 85, 247, 0.5) !important;
+            color: #ffffff !important;
+            font-weight: bold !important;
+            border-radius: 6px !important;
+            outline: none !important;
+        }
+        .tgdd-form-group input:focus, .tgdd-form-group select:focus,
+        .tgdd-input-table input:focus, .tgdd-input-table select:focus {
+            border-color: #ef4444 !important;
+            box-shadow: 0 0 10px rgba(239, 68, 68, 0.5) !important;
+            background: #120326 !important;
+        }
+
+        /* Khung bao Shop 1 - Shop 5 (Thẻ Ma Phù) */
+        div[style*="border: 1px solid #e0e0e0"], div[style*="background: #fafafa"],
+        div[style*="border: 1px dashed #ccc"], div[style*="background: #f9f9f9"],
+        div[style*="border: 1.5px dashed #007bff"], #cfg-theme-selector-container {
+            background: rgba(46, 8, 84, 0.45) !important;
+            border: 1.5px solid rgba(168, 85, 247, 0.4) !important;
+            border-radius: 12px !important;
+        }
+
+        /* Bảng nhập liệu */
+        .tgdd-input-table {
+            border: 1px solid rgba(168, 85, 247, 0.4) !important;
+        }
+        .tgdd-input-table th {
+            background: #2e0854 !important;
+            color: #f43f5e !important;
+            font-weight: 900 !important;
+            border: 1px solid rgba(168, 85, 247, 0.4) !important;
+        }
+        .tgdd-input-table td {
+            background: rgba(18, 3, 38, 0.7) !important;
+            color: #ffffff !important;
+            border: 1px solid rgba(168, 85, 247, 0.3) !important;
+        }
+
+        /* Các nút bấm thao tác trong Khai báo */
+        .tgdd-btn-add, #btn-load-groups, #btn-score-rules-help, #btn-target-help {
+            background: linear-gradient(135deg, #7e22ce, #6b21a8) !important;
+            color: #ffffff !important;
+            border: 1px solid #c084fc !important;
+            font-weight: 900 !important;
+            border-radius: 6px !important;
+        }
+        .tgdd-btn-del, .tgdd-btn-del-sch {
+            background: #dc2626 !important;
+            color: #ffffff !important;
+            border: 1px solid #f87171 !important;
+            font-weight: 900 !important;
+        }
+
+        /* Hai nút lớn ở đáy modal: Load Cloud & Lưu cấu hình */
+        #btn-load-cloud {
+            background: linear-gradient(135deg, #7e22ce, #581c87) !important;
+            border: 1.5px solid #a855f7 !important;
+            color: #ffffff !important;
+            box-shadow: 0 4px 15px rgba(126, 34, 206, 0.4) !important;
+        }
+        #btn-save-all, .tgdd-btn-save, .tgdd-btn-run, .tgdd-msg-btn {
+            background: linear-gradient(135deg, #ef4444 0%, #b91c1c 50%, #4c0519 100%) !important;
+            color: #ffffff !important;
+            font-weight: 900 !important;
+            border: 1.5px solid #f87171 !important;
+            box-shadow: 0 4px 20px rgba(239, 68, 68, 0.6) !important;
         }
 
         /* ================= MODAL CHỌN BÁO CÁO (CHỮ RÕ NÉT 100%) ================= */
@@ -141,70 +239,36 @@
             border-bottom: 3px solid #ef4444 !important;
         }
 
-        /* Thẻ bài Checkbox Ma Đạo */
         .tgdd-chk-group {
             background: rgba(30, 8, 56, 0.65) !important;
             border: 1.5px solid rgba(168, 85, 247, 0.4) !important;
             border-radius: 10px !important;
             margin-bottom: 8px !important;
             padding: 10px 12px !important;
-            transition: all 0.2s ease !important;
         }
         .tgdd-chk-group:hover {
             background: rgba(168, 85, 247, 0.25) !important;
             border-color: #ef4444 !important;
             box-shadow: 0 0 12px rgba(239, 68, 68, 0.5) !important;
         }
-
-        /* Chữ nhãn Checkbox sáng nét */
         .tgdd-chk-group label {
             color: #ffffff !important;
             font-weight: 800 !important;
             font-size: 14px !important;
-            letter-spacing: 0.3px !important;
             text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9) !important;
         }
         .tgdd-chk-group input[type="checkbox"] {
-            width: 18px !important;
-            height: 18px !important;
             accent-color: #ef4444 !important;
-            cursor: pointer !important;
         }
-
-        /* Thẻ ALL & Lưu Data (Huyết Ma Chi Tôn) */
         .tgdd-chk-group:has(#chk-all-save) {
             background: linear-gradient(135deg, rgba(239, 68, 68, 0.25), rgba(46, 8, 84, 0.8)) !important;
             border: 1.5px solid #ef4444 !important;
         }
         .tgdd-chk-group label[for="chk-all-save"] {
             color: #fca5a5 !important;
-            font-weight: 900 !important;
             text-shadow: 0 0 8px rgba(239, 68, 68, 0.8) !important;
         }
 
-        /* Nút Bắt Đầu / Xuất Chiêu */
-        .tgdd-btn-cancel {
-            background: linear-gradient(135deg, #475569, #1e293b) !important;
-            color: #ffffff !important;
-            font-weight: 800 !important;
-            border: 1px solid #64748b !important;
-            border-radius: 10px !important;
-        }
-        .tgdd-btn-run, .tgdd-msg-btn, #btn-save-all, .tgdd-btn-save {
-            background: linear-gradient(135deg, #ef4444 0%, #b91c1c 50%, #4c0519 100%) !important;
-            color: #ffffff !important;
-            font-weight: 900 !important;
-            border: 1.5px solid #f87171 !important;
-            border-radius: 10px !important;
-            box-shadow: 0 4px 20px rgba(239, 68, 68, 0.6), inset 0 0 8px rgba(248, 113, 113, 0.4) !important;
-            text-transform: uppercase;
-        }
-        .tgdd-btn-run:hover, .tgdd-msg-btn:hover {
-            box-shadow: 0 0 25px rgba(239, 68, 68, 0.9) !important;
-            transform: scale(1.02);
-        }
-
-        /* Dải nhạc nền Marquee */
         #tgdd-mini-music-bar {
             color: #c084fc !important;
             border-top: 1px dashed rgba(168, 85, 247, 0.4) !important;
@@ -212,7 +276,7 @@
     `;
     document.head.appendChild(themeStyle);
 
-    // 2. MÀN HÌNH LOADING: THIÊN NGHỊCH HUYẾT LÔI TRẬN
+    // 2. MÀN HÌNH LOADING
     window.TGDD_THEME = {
         name: "Tiên Nghịch",
         startLoading: function(isStatic) {
@@ -229,21 +293,16 @@
                 `;
                 overlay.innerHTML = `
                     <div style="position:relative; width: 120px; height: 120px; display:flex; align-items:center; justify-content:center;">
-                        <!-- Vòng xoay Ma Trận Hư Không -->
                         <div style="position:absolute; width: 100%; height: 100%; border-radius: 50%; border: 2px dashed rgba(239, 68, 68, 0.7); animation: spinFormationTN 6s linear infinite;"></div>
-                        <!-- Vòng xoay Cực Cảnh Sát Khí -->
                         <div style="position:absolute; width: 85%; height: 85%; border-radius: 50%; border: 3px solid transparent; border-top-color: #ef4444; border-bottom-color: #c084fc; animation: spinReverseTN 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite; box-shadow: 0 0 25px rgba(239, 68, 68, 0.8);"></div>
-                        <!-- Tâm bảo vật Thiên Nghịch Châu -->
                         <div style="font-size: 40px; filter: drop-shadow(0 0 15px #ef4444); animation: pulseBead 2s ease-in-out infinite alternate;">🔮</div>
                     </div>
-
                     <div style="margin-top: 30px; font-family: 'Segoe UI', serif; font-size: 15px; font-weight: 900; color: #f43f5e; letter-spacing: 3px; text-shadow: 0 0 15px rgba(244, 63, 94, 0.8); text-transform: uppercase;">
-                        CỰC CẢNH SÁT LỤC ĐANG QUÉT...
+                        CỰC CẢNH VÔ ĐỊCH CÙNG CẢNH GIỚI...
                     </div>
                     <div style="margin-top: 6px; font-size: 11px; color: #c084fc; letter-spacing: 1px; font-style: italic;">
                         Thuận vi phàm, nghịch vi tiên, chỉ tại nhất niệm!
                     </div>
-
                     <style>
                         @keyframes spinFormationTN { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
                         @keyframes spinReverseTN { 0% { transform: rotate(360deg); } 100% { transform: rotate(0deg); } }

@@ -1,6 +1,6 @@
 (function() {
     // =========================================================================
-    // 1. MÁY QUÉT ĐỊA CHỈ: Kiểm tra Trang Chủ Auto BI 15.5
+    // 1. MÁY QUÉT ĐỊA CHỈ: Kiểm tra Trang Chủ
     // =========================================================================
     const path = window.location.pathname;
     const href = window.location.href;

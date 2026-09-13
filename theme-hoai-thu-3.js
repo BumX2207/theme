@@ -1,131 +1,137 @@
 (function() {
     // =========================================================================
-    // 1. MÁY QUÉT ĐỊA CHỈ: Kiểm tra Trang Chủ
+    // 1. MÁY QUÉT ĐỊA CHỈ: Kiểm tra Trang Chủ Auto BI 15.5
     // =========================================================================
     const path = window.location.pathname;
     const href = window.location.href;
-    const isHomePage = path === '/' || path === '' || href.includes('/khoi-ban-hang-sub/-1');
+    const isHomePage = path === '/' || path === '' || href.includes('/dashboard/home') || href.endsWith('baocao.dienmayxanh.com');
 
     if (!isHomePage) return;
 
     // =========================================================================
-    // 2. KHAI BÁO TÀI NGUYÊN SVG (Tông vàng nắng ấm, đính kèm viền trắng mềm mại)
+    // 2. TÀI NGUYÊN SVG & BỘ LỜI CHÚC YÊU THƯƠNG NGẪU NHIÊN
     // =========================================================================
-    // Trái tim vàng có viền trắng (stroke-width: 24) bo tròn cực nét
-    const SVG_HEART_GOLD = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='%23FFB703' stroke='%23FFFFFF' stroke-width='24' stroke-linejoin='round' d='M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z'/%3E%3C/svg%3E";
-    // Hoa dã quỳ/hoa bồ công anh vàng nhạt dập dờn
-    const SVG_FLOWER_GOLD = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='%23FFE082' d='M256 0c30 80 120 60 170 120 50 60 30 150 0 200-40 60-120 40-170 120-50-80-140-60-170-120-40-70-10-150 0-200 40-60 140-40 170-120z'/%3E%3C/svg%3E";
-    // Ngôi sao vàng lấp lánh (Tia nắng)
-    const SVG_SUN_SPARKLE = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='%23FFD700' d='M256 0c15 110 65 160 175 175-110 15-160 65-175 175-15-110-65-160-175-175C191 160 241 110 256 0z'/%3E%3C/svg%3E";
+    const SVG_HEART = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='%23ff4d6d' d='M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z'/%3E%3C/svg%3E";
+    const SVG_SPARKLE = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='%23FFD700' d='M256 0c15 110 65 160 175 175-110 15-160 65-175 175-15-110-65-160-175-175C191 160 241 110 256 0z'/%3E%3C/svg%3E";
+
+    const SWEET_MESSAGES = [
+        { main: "Đang chuẩn bị số liệu cho Hoài Thu nè...", sub: "Hôm nay em bé nhớ uống thật nhiều nước nha! 🥤💕" },
+        { main: "Hệ thống đang tải dữ liệu siêu tốc...", sub: "Chúc cô gái nhỏ một ngày luôn rạng rỡ và tràn đầy năng lượng! ☀️🌸" },
+        { main: "Đang tổng hợp báo cáo cho em bé...", sub: "Cứ nhẹ nhàng làm việc, mọi thứ đã có anh lo! ✨💖" },
+        { main: "Sắp xong rồi nè Hoài Thu ơi...", sub: "Hôm nay chắc chắn sẽ là một ngày siêu may mắn và chốt đơn mỏi tay! 🍀🥰" },
+        { main: "Đang lấy số liệu mới nhất cho em...", sub: "Bắn ngàn tim cho cô bé chăm chỉ và dễ thương nhất! 💖🧸" }
+    ];
 
     // =========================================================================
-    // 3. NHÚNG CSS GIAO DIỆN "TINH KHÔI - NẮNG ẤM"
+    // 3. NHÚNG CSS GIAO DIỆN THEME "HOÀI THU"
     // =========================================================================
     const style = document.createElement('style');
-    style.id = 'theme-hoaithu-gold-style';
+    style.id = 'theme-hoaithu-style';
     style.innerHTML = `
-        /* --- INTRO BANNER NẮNG BAN MAI --- */
-        #ht-banner { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: radial-gradient(circle, #fffdf0 0%, #fefae0 100%); z-index: 999999; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; pointer-events: none; animation: fadeOutBanner 0.8s ease 4s forwards; }
-        .ht-text-main { font-family: 'Georgia', serif; font-size: clamp(35px, 8vw, 80px); font-weight: bold; color: #b5820f; text-shadow: 2px 2px 10px rgba(181, 130, 15, 0.2); margin-bottom: 10px; animation: softZoom 1s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
-        .ht-text-sub { font-family: 'Arial', sans-serif; font-size: clamp(13px, 3.5vw, 22px); font-weight: bold; color: #d48c00; letter-spacing: 2px; opacity: 0; animation: fadeInText 1s ease 1s forwards; }
+        /* --- INTRO BANNER CHÀO SÂN --- */
+        #ht-banner { 
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; 
+            background: radial-gradient(circle, #fff0f3 0%, #ffc2d1 100%); 
+            z-index: 999999; display: flex; flex-direction: column; justify-content: center; align-items: center; 
+            text-align: center; pointer-events: none; animation: fadeOutBanner 0.8s ease 3.8s forwards; 
+        }
+        .ht-text-main { 
+            font-family: 'Georgia', serif; font-size: clamp(35px, 8vw, 75px); font-weight: bold; 
+            color: #ff4d6d; text-shadow: 2px 2px 12px rgba(255, 77, 109, 0.3); margin-bottom: 10px; 
+            animation: softZoom 1s cubic-bezier(0.25, 1, 0.5, 1) forwards; 
+        }
+        .ht-text-sub { 
+            font-family: 'Arial', sans-serif; font-size: clamp(14px, 3.5vw, 22px); font-weight: 600; 
+            color: #c9184a; letter-spacing: 2px; opacity: 0; animation: fadeInText 1s ease 0.8s forwards; 
+        }
         
         @keyframes softZoom { 0% { transform: scale(0.8); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
         @keyframes fadeInText { 0% { opacity: 0; transform: translateY(10px); } 100% { opacity: 1; transform: translateY(0); } }
         @keyframes fadeOutBanner { 0% { opacity: 1; } 100% { opacity: 0; visibility: hidden; } }
 
-        /* --- BOTTOM NAV & BIẾN NÚT TRÒN THÀNH TRÁI TIM ĐẬP NHỊP --- */
-        body.glass-ui-mode #tgdd-bottom-nav, #tgdd-bottom-nav { background: linear-gradient(135deg, #fffdf0, #fcf8e3) !important; border-top: 1px solid #ffe082 !important; box-shadow: 0 -5px 20px rgba(254, 250, 224, 0.5) !important;}
-        body.glass-ui-mode #tgdd-bottom-nav .nav-item svg, #tgdd-bottom-nav .nav-item svg { stroke: #d48c00 !important; fill: transparent !important; }
-        body.glass-ui-mode #tgdd-bottom-nav .nav-item, #tgdd-bottom-nav .nav-item { color: #b5820f !important; font-weight: bold; }
-        
-        /* Ẩn hình tròn và viền xám mặc định, biến thành khung chứa trái tim */
-        body.glass-ui-mode .nav-icon-circle, .nav-icon-circle { 
-            background: transparent !important; 
-            border: none !important; 
-            box-shadow: none !important; 
-            overflow: visible !important; 
-            position: relative !important;
-            transform: translateY(-15px) !important;
-            animation: heartbeat-button 1.5s infinite !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            width: 48px !important;
-            height: 48px !important;
+        /* --- TÙY BIẾN NÚT 3 GẠCH MENU HEADER TONE HỒNG --- */
+        #tgdd-header-menu-btn {
+            background: rgba(255, 240, 243, 0.85) !important;
+            border: 1.5px solid #ffb3c6 !important;
+            color: #ff4d6d !important;
+            box-shadow: 0 3px 10px rgba(255, 77, 109, 0.2) !important;
         }
-        
-        /* Hiệu ứng nhịp đập co dãn nhịp nhàng cho cả nút trái tim lớn */
-        @keyframes heartbeat-button { 
-            0% { transform: translateY(-15px) scale(1); } 
-            15% { transform: translateY(-15px) scale(1.15); } 
-            30% { transform: translateY(-15px) scale(1); } 
-            45% { transform: translateY(-15px) scale(1.15); } 
-            60%, 100% { transform: translateY(-15px) scale(1); } 
+        #tgdd-header-menu-btn:hover {
+            background: #fff0f3 !important;
+            border-color: #ff4d6d !important;
+            transform: scale(1.08) !important;
         }
 
-        /* Định hình lại icon báo cáo nằm đè chuẩn hóa trên trái tim vàng */
-        body.glass-ui-mode .nav-icon-circle svg, .nav-icon-circle svg { 
-            stroke: #fff !important; 
-            position: relative !important;
-            z-index: 2 !important;
-            margin: 0 !important;
-            width: 22px !important;
-            height: 22px !important;
+        /* --- SIDEBAR MENU TONE HỒNG PASTEL --- */
+        #tgdd-sidebar-menu {
+            background: rgba(255, 240, 243, 0.75) !important;
+            backdrop-filter: blur(25px) !important;
+            -webkit-backdrop-filter: blur(25px) !important;
+            border-right: 1.5px solid rgba(255, 179, 198, 0.6) !important;
         }
-        
-        /* Sử dụng Pseudo-element để vẽ nền hình trái tim vàng tỏa sáng lung linh (Có viền trắng tích hợp) */
-        body.glass-ui-mode .nav-icon-circle::before, .nav-icon-circle::before { 
-            content: '' !important; 
-            position: absolute !important; 
-            top: 0 !important; 
-            left: 0 !important; 
-            width: 100% !important; 
-            height: 100% !important; 
-            background-image: url("${SVG_HEART_GOLD}") !important; 
-            background-size: contain !important; 
-            background-repeat: no-repeat !important; 
-            background-position: center !important;
-            z-index: 1 !important; 
-            pointer-events: none; 
-            filter: drop-shadow(0px 0px 10px rgba(255, 183, 3, 0.8)) !important;
-            animation: none !important; 
-            transform: none !important;
+        #tgdd-sidebar-menu::before {
+            background: linear-gradient(180deg, #fff5f7, #ffffff) !important;
+            box-shadow: 0 4px 20px rgba(255, 77, 109, 0.1) !important;
         }
-
-        /* --- MƯA SAO LẤP LÁNH & HOA RƠI --- */
-        #romantic-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 99999; overflow: hidden; }
-        .romantic-item { position: absolute; top: -50px; opacity: 0.6; animation: float-down linear infinite; }
-        @keyframes float-down { 
-            0% { transform: translateY(-50px) translateX(0) rotate(0deg); opacity: 0; } 
-            10% { opacity: 0.8; }
-            90% { opacity: 0.6; }
-            100% { transform: translateY(110vh) translateX(50px) rotate(360deg); opacity: 0; } 
+        .sidebar-header {
+            border-bottom: 2px solid #ff758f !important;
+        }
+        .sidebar-title {
+            color: #ff4d6d !important;
+            font-family: 'Georgia', serif !important;
+        }
+        .tgdd-menu-item:hover {
+            background: rgba(255, 77, 109, 0.08) !important;
+            color: #ff4d6d !important;
         }
 
         /* =========================================================================
-           MÀN HÌNH CHỜ (LOADING) ĐÔNG ẤM DÀNH RIÊNG CHO CÔ ẤY
+           MÀN HÌNH CHỜ (LOADING) YÊU THƯƠNG KHI BẤM CHẠY BÁO CÁO
            ========================================================================= */
         #theme-loading-overlay {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background: linear-gradient(180deg, #fefae0 0%, #fffdf0 100%);
+            background: radial-gradient(circle at 50% 50%, #fff0f3 0%, #ffc2d1 100%);
             z-index: 500000; display: flex; flex-direction: column; justify-content: center; align-items: center; 
-            overflow: hidden; transition: opacity 0.8s ease;
+            overflow: hidden; transition: opacity 0.6s ease;
         }
 
-        /* Trái tim vàng lớn tỏa sáng lung linh */
-        .big-heart-gold { width: 120px; height: 120px; background-image: url("${SVG_HEART_GOLD}"); background-size: contain; background-repeat: no-repeat; animation: heartbeat-big 2s infinite; filter: drop-shadow(0 10px 25px rgba(255, 183, 3, 0.5)); margin-bottom: 30px;}
-        @keyframes heartbeat-big { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+        .heart-box {
+            position: relative; width: 130px; height: 130px; margin-bottom: 25px;
+            display: flex; justify-content: center; align-items: center;
+        }
+        .big-heart { 
+            width: 100%; height: 100%; 
+            background-image: url("${SVG_HEART}"); background-size: contain; background-repeat: no-repeat; background-position: center;
+            animation: heartbeat-sweet 1.5s infinite; filter: drop-shadow(0 10px 25px rgba(255, 77, 109, 0.45)); 
+        }
+        @keyframes heartbeat-sweet { 
+            0% { transform: scale(1); } 
+            15% { transform: scale(1.18); } 
+            30% { transform: scale(1); } 
+            45% { transform: scale(1.18); } 
+            60%, 100% { transform: scale(1); } 
+        }
 
-        /* Lời nhắn ngọt ngào */
+        .sparkle-item {
+            position: absolute; width: 28px; height: 28px;
+            background-image: url("${SVG_SPARKLE}"); background-size: contain; background-repeat: no-repeat;
+            animation: sparkle-float 2s infinite ease-in-out alternate;
+        }
+        @keyframes sparkle-float {
+            0% { transform: scale(0.6) rotate(0deg); opacity: 0.3; }
+            100% { transform: scale(1.2) rotate(180deg); opacity: 1; }
+        }
+
         #theme-status-text {
-            text-align: center; color: #b5820f; font-size: 21px; font-weight: bold; font-family: 'Segoe UI', sans-serif;
-            padding: 0 20px; line-height: 1.6;
-            animation: softPulse 2s infinite alternate; z-index: 50;
+            text-align: center; color: #c9184a; font-size: clamp(20px, 4.5vw, 26px); font-weight: bold; 
+            font-family: 'Georgia', serif; padding: 0 20px; line-height: 1.5; 
+            text-shadow: 1px 1px 8px rgba(201, 24, 74, 0.15); animation: softPulse 2s infinite alternate; z-index: 50;
         }
         #theme-status-sub {
-            text-align: center; color: #d48c00; font-size: 14px; margin-top: 12px; font-style: italic; font-weight: bold;
+            text-align: center; color: #ff4d6d; font-size: clamp(13px, 3.2vw, 16px); 
+            margin-top: 10px; font-style: italic; font-weight: 600; padding: 0 25px;
         }
-        @keyframes softPulse { 0% { opacity: 0.7; } 100% { opacity: 1; } }
+        @keyframes softPulse { 0% { opacity: 0.8; } 100% { opacity: 1; } }
     `;
     document.head.appendChild(style);
 
@@ -139,25 +145,21 @@
             const overlay = document.createElement('div');
             overlay.id = 'theme-loading-overlay';
             
+            // Chọn ngẫu nhiên 1 lời chúc dễ thương
+            const randomMsg = SWEET_MESSAGES[Math.floor(Math.random() * SWEET_MESSAGES.length)];
+
             overlay.innerHTML = `
-                <div class="big-heart-gold"></div>
-                <div id="theme-status-text">Chờ một chút nhé, cô gái đáng yêu! ☀️💛...</div>
-                <div id="theme-status-sub"></div>
+                <div class="heart-box">
+                    <div class="big-heart"></div>
+                    <div class="sparkle-item" style="top:-10px; left:-10px; animation-delay:0s;"></div>
+                    <div class="sparkle-item" style="top:-10px; right:-10px; animation-delay:0.5s;"></div>
+                    <div class="sparkle-item" style="bottom:-10px; left:0px; animation-delay:1s;"></div>
+                    <div class="sparkle-item" style="bottom:-10px; right:0px; animation-delay:1.5s;"></div>
+                </div>
+                <div id="theme-status-text">${randomMsg.main}</div>
+                <div id="theme-status-sub">${randomMsg.sub}</div>
             `;
             document.body.appendChild(overlay);
-
-            // Bắn các vì tinh tú lấp lánh xung quanh trái tim
-            for(let i=0; i<6; i++) {
-                let sparkle = document.createElement('div');
-                sparkle.style.position = 'absolute';
-                sparkle.style.width = '24px'; sparkle.style.height = '24px';
-                sparkle.style.backgroundImage = `url("${SVG_SUN_SPARKLE}")`;
-                sparkle.style.backgroundSize = 'contain';
-                sparkle.style.top = (40 + Math.random()*25 - 12) + '%';
-                sparkle.style.left = (45 + Math.random()*12 - 6) + '%';
-                sparkle.style.animation = `heartbeat-big ${1.2 + Math.random()}s infinite alternate`;
-                overlay.appendChild(sparkle);
-            }
 
             return true; 
         },
@@ -165,22 +167,20 @@
         finishLoading: function(callbackToNextPage) {
             const overlay = document.getElementById('theme-loading-overlay');
             if (overlay) {
-                // Đổi lời nhắn khi tải xong
-                document.getElementById('theme-status-text').innerHTML = "Chúc Hoài Thu ngày mới rạng rỡ! ☀️🌻";
+                // Đổi sang lời chúc khi nạp xong
+                const titleEl = document.getElementById('theme-status-text');
+                const subEl = document.getElementById('theme-status-sub');
+                if (titleEl) titleEl.innerHTML = "Báo cáo đã sẵn sàng! 💕<br>Chúc Hoài Thu ngày mới thật rực rỡ nhé! 🌸";
+                if (subEl) subEl.innerText = "Đang mở bảng báo cáo ngay nè...";
                 
-                const statusSub = document.getElementById('theme-status-sub');
-                if (statusSub) {
-                    statusSub.innerText = "Nụ cười của em là niềm vui của anh! 💛";
-                }
-                
-                // Trì hoãn 1.6 giây để cô ấy cảm nhận trọn vẹn lời nhắn
+                // Níu lại 1.2 giây để đọc lời chúc rồi chuyển tiếp
                 setTimeout(() => {
                     overlay.style.opacity = '0';
                     setTimeout(() => {
                         overlay.remove();
                         if (callbackToNextPage) callbackToNextPage(); 
-                    }, 800); // Đợi mờ dần rồi mới vẽ bảng
-                }, 1600);
+                    }, 600);
+                }, 1200);
             } else {
                 if (callbackToNextPage) callbackToNextPage();
             }
@@ -188,45 +188,14 @@
     };
 
     // =========================================================================
-    // 5. HIỆU ỨNG MƯA LÁ VÀNG & SAO KHUYA (MƯA ROMANTIC NHẸ)
-    // =========================================================================
-    const romanticContainer = document.createElement('div');
-    romanticContainer.id = 'romantic-container';
-    document.body.appendChild(romanticContainer);
-
-    const elementsArr = [SVG_FLOWER_GOLD, SVG_SUN_SPARKLE];
-    
-    // Tự động rụng 14 hạt sương lấp lánh để tránh lag và tăng tính thẩm mỹ
-    for (let i = 0; i < 14; i++) {
-        let item = document.createElement('div');
-        item.className = 'romantic-item';
-        
-        let randomSvg = elementsArr[Math.floor(Math.random() * elementsArr.length)];
-        item.style.backgroundImage = `url("${randomSvg}")`;
-        item.style.backgroundSize = 'contain';
-        item.style.backgroundRepeat = 'no-repeat';
-        
-        // Kích thước ngẫu nhiên từ 12px đến 24px
-        let size = (Math.random() * 12 + 12) + 'px';
-        item.style.width = size; item.style.height = size;
-        
-        // Cấu hình vị trí và thời gian rơi (Đoạn nối chuỗi thời gian đã an toàn)
-        item.style.left = (Math.random() * 95) + 'vw';
-        item.style.animationDuration = (Math.random() * 6 + 4) + 's'; 
-        item.style.animationDelay = `-${Math.random() * 8}s`;
-        
-        romanticContainer.appendChild(item);
-    }
-
-    // =========================================================================
-    // 6. CHẠY MÀN CHÀO SÂN KHI MỞ TRANG
+    // 5. CHẠY MÀN CHÀO SÂN BAN ĐẦU
     // =========================================================================
     if (!document.getElementById('ht-banner')) {
         const banner = document.createElement('div'); banner.id = 'ht-banner';
-        banner.innerHTML = `<div class="ht-text-main">Chào Hoài Thu 💛</div><div class="ht-text-sub">Yêu Hoài Thu nhấttttt! 🌻☀️</div>`;
+        banner.innerHTML = `<div class="ht-text-main">Chào Hoài Thu</div><div class="ht-text-sub">Ngày mới tốt lành nhé! ✨</div>`;
         document.body.appendChild(banner);
-        setTimeout(() => { if (banner) banner.remove(); }, 4800);
+        setTimeout(() => { if (banner) banner.remove(); }, 4600);
     }
 
-    console.log("Đã kích hoạt Theme Hoài Thu - Nắng Ấm Ban Mai! 💛☀️");
+    console.log("Đã kích hoạt Theme Hoài Thu (Bản 15.5 Sweet Edition)! 💕🌸");
 })();

@@ -170,8 +170,8 @@
                 // Đổi sang lời chúc khi nạp xong
                 const titleEl = document.getElementById('theme-status-text');
                 const subEl = document.getElementById('theme-status-sub');
-                if (titleEl) titleEl.innerHTML = "Báo cáo đã sẵn sàng! 💕<br>Chúc Hoài Thu ngày mới thật rực rỡ nhé! 🌸";
-                if (subEl) subEl.innerText = "Đang mở bảng báo cáo ...";
+                if (titleEl) titleEl.innerHTML = "Bắt đầu chạy báo cáo 💕";
+                if (subEl) subEl.innerText = "Chờ chút nha ...";
                 
                 // Níu lại 1.2 giây để đọc lời chúc rồi chuyển tiếp
                 setTimeout(() => {

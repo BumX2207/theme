@@ -15,11 +15,11 @@
     const SVG_SPARKLE = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='%23FFD700' d='M256 0c15 110 65 160 175 175-110 15-160 65-175 175-15-110-65-160-175-175C191 160 241 110 256 0z'/%3E%3C/svg%3E";
 
     const SWEET_MESSAGES = [
-        { main: "Đang chuẩn bị số liệu cho Hoài Thu nè...", sub: "Hôm nay em bé nhớ uống thật nhiều nước nha! 🥤💕" },
-        { main: "Hệ thống đang tải dữ liệu siêu tốc...", sub: "Chúc cô gái nhỏ một ngày luôn rạng rỡ và tràn đầy năng lượng! ☀️🌸" },
-        { main: "Đang tổng hợp báo cáo cho em bé...", sub: "Cứ nhẹ nhàng làm việc, mọi thứ đã có anh lo! ✨💖" },
-        { main: "Sắp xong rồi nè Hoài Thu ơi...", sub: "Hôm nay chắc chắn sẽ là một ngày siêu may mắn và chốt đơn mỏi tay! 🍀🥰" },
-        { main: "Đang lấy số liệu mới nhất cho em...", sub: "Bắn ngàn tim cho cô bé chăm chỉ và dễ thương nhất! 💖🧸" }
+        { main: "Đang chuẩn bị số liệu cho Hoài Thu ...", sub: "Hôm nay em nhớ uống thật nhiều nước nha! 🥤💕" },
+        { main: "Hệ thống đang tải dữ liệu ...", sub: "Chúc cô gái nhỏ một ngày luôn rạng rỡ và tràn đầy năng lượng! ☀️🌸" },
+        { main: "Đang tổng hợp báo cáo cho em ...", sub: "Cứ nhẹ nhàng làm việc, mọi thứ đã có anh lo! ✨💖" },
+        { main: "Sắp xong rồi nhe...", sub: "Hôm nay chắc chắn sẽ là một ngày siêu may mắn và chốt đơn mỏi tay! 🍀🥰" },
+        { main: "Đang lấy số liệu mới nhất cho em...", sub: "Bắn tim cho cô bé chăm chỉ và dễ thương nhất! 💖🧸" }
     ];
 
     // =========================================================================
@@ -171,7 +171,7 @@
                 const titleEl = document.getElementById('theme-status-text');
                 const subEl = document.getElementById('theme-status-sub');
                 if (titleEl) titleEl.innerHTML = "Báo cáo đã sẵn sàng! 💕<br>Chúc Hoài Thu ngày mới thật rực rỡ nhé! 🌸";
-                if (subEl) subEl.innerText = "Đang mở bảng báo cáo ngay nè...";
+                if (subEl) subEl.innerText = "Đang mở bảng báo cáo ...";
                 
                 // Níu lại 1.2 giây để đọc lời chúc rồi chuyển tiếp
                 setTimeout(() => {
@@ -180,7 +180,7 @@
                         overlay.remove();
                         if (callbackToNextPage) callbackToNextPage(); 
                     }, 600);
-                }, 1200);
+                }, 3000);
             } else {
                 if (callbackToNextPage) callbackToNextPage();
             }
@@ -197,5 +197,5 @@
         setTimeout(() => { if (banner) banner.remove(); }, 4600);
     }
 
-    console.log("Đã kích hoạt Theme Hoài Thu (Bản 15.5 Sweet Edition)! 💕🌸");
+    console.log("Đã kích hoạt Theme Hoài Thu! 💕🌸");
 })();

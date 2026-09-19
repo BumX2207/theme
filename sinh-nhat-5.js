@@ -6,7 +6,7 @@ function initBdayTheme() {
     console.log("[THEME] Đang tải giao diện sự kiện: Happy Birthday Hoài Thu! 🎉🎂");
 
     // =========================================================================
-    // PHÂN KHU 1: HỆ THỐNG CSS GIAO DIỆN SINH NHẬT (COZY ROSE GOLD & ENVELOPE)
+    // PHÂN KHU 1: HỆ THỐNG CSS GIAO DIỆN SINH NHẬT (ĐÃ HẠ THẤP PHONG THƯ & KHÓA MAX-HEIGHT)
     // =========================================================================
     if (!document.getElementById('tgdd-birthday-theme-styles')) {
         const style = document.createElement('style');
@@ -126,14 +126,40 @@ function initBdayTheme() {
             .bday-action-btn:hover { transform: scale(1.06); box-shadow: 0 8px 25px rgba(255, 117, 140, 0.7); }
             .bday-action-btn:active { transform: scale(0.95); }
 
-            /* --- PHONG THƯ TÌNH YÊU HOÀNG GIA --- */
+            /* --- ✉️ PHONG THƯ ĐƯỢC HẠ THẤP XUỐNG DƯỚI (TOP 60%) --- */
             .envelope-wrapper {
-                position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.6); opacity: 0; pointer-events: none; z-index: 100; transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); display: flex; align-items: center; justify-content: center; width: 320px; height: 210px;
+                position: absolute; 
+                top: 60% !important; /* Hạ thấp vị trí phong thư để có không gian mở thư */
+                left: 50%; 
+                transform: translate(-50%, -50%) scale(0.6); 
+                opacity: 0; 
+                pointer-events: none; 
+                z-index: 100; 
+                transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+                display: flex; 
+                align-items: center; 
+                justify-content: center; 
+                width: clamp(300px, 90vw, 340px); 
+                height: 200px;
             }
-            .envelope-wrapper.show { opacity: 1; transform: translate(-50%, -50%) scale(1); pointer-events: auto; }
+            .envelope-wrapper.show { 
+                opacity: 1; 
+                transform: translate(-50%, -50%) scale(1); 
+                pointer-events: auto; 
+            }
             
             .envelope {
-                width: 300px; height: 195px; background: #b91c1c; border-radius: 14px; position: relative; box-shadow: 0 20px 45px rgba(0,0,0,0.6); border: 2.5px solid #991b1b; cursor: pointer; display: flex; align-items: center; justify-content: center;
+                width: clamp(290px, 88vw, 330px); 
+                height: 185px; 
+                background: #b91c1c; 
+                border-radius: 14px; 
+                position: relative; 
+                box-shadow: 0 20px 45px rgba(0,0,0,0.6); 
+                border: 2.5px solid #991b1b; 
+                cursor: pointer; 
+                display: flex; 
+                align-items: center; 
+                justify-content: center;
             }
             .envelope-flap {
                 position: absolute; top: 0; left: 0; width: 0; height: 0; border-left: 150px solid transparent; border-right: 150px solid transparent; border-top: 105px solid #991b1b; border-radius: 14px 14px 0 0; transform-origin: top center; transition: transform 0.6s ease; z-index: 5;
@@ -145,17 +171,38 @@ function initBdayTheme() {
             }
 
             .wax-seal {
-                position: absolute; top: 88px; left: 132px; width: 38px; height: 38px; background: radial-gradient(circle, #fde047, #ca8a04); border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.4); border: 2px solid #ffd700; z-index: 6; display: flex; align-items: center; justify-content: center; font-size: 16px; transition: opacity 0.3s ease;
+                position: absolute; top: 82px; left: 132px; width: 38px; height: 38px; background: radial-gradient(circle, #fde047, #ca8a04); border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.4); border: 2px solid #ffd700; z-index: 6; display: flex; align-items: center; justify-content: center; font-size: 16px; transition: opacity 0.3s ease;
             }
             .wax-seal::after { content: "❤️"; }
             .envelope.open .wax-seal { opacity: 0; }
 
-            /* --- LÁ THƯ TÂM SỰ SANG TRỌNG --- */
+            /* --- 📜 LÁ THƯ TÂM SỰ KHÓA MAX-HEIGHT (CUỘN MƯỢT, VỪA TẦM MẮT) --- */
             .letter-paper {
-                position: absolute; bottom: 10px; width: 280px; max-height: 60vh; overflow-y: auto; background: #fffdfa; border-radius: 10px; padding: 25px 18px; box-shadow: 0 8px 25px rgba(0,0,0,0.3); box-sizing: border-box; text-align: left; transform: translateY(0); transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s; z-index: 3; opacity: 0; border: 1.5px solid #fbd38d; scrollbar-width: none;
+                position: absolute; 
+                bottom: 10px; 
+                width: clamp(270px, 82vw, 305px); 
+                max-height: 48vh !important; /* Khóa chiều cao lá thư không bị trồi quá cao */
+                overflow-y: auto !important; 
+                -webkit-overflow-scrolling: touch;
+                background: #fffdfa; 
+                border-radius: 10px; 
+                padding: 22px 18px; 
+                box-shadow: 0 10px 30px rgba(0,0,0,0.35); 
+                box-sizing: border-box; 
+                text-align: left; 
+                transform: translateY(0); 
+                transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s; 
+                z-index: 3; 
+                opacity: 0; 
+                border: 1.5px solid #fbd38d;
+                scrollbar-width: none;
             }
             .letter-paper::-webkit-scrollbar { display: none; }
-            .envelope.open .letter-paper { transform: translateY(-135px); opacity: 1; z-index: 10; }
+            .envelope.open .letter-paper { 
+                transform: translateY(-115px) !important; /* Trượt lên ngay tâm màn hình */
+                opacity: 1; 
+                z-index: 10; 
+            }
 
             .letter-content { 
                 font-size: 13.5px; line-height: 1.75; color: #4a2c00; font-family: 'Times New Roman', Georgia, serif; font-style: italic; font-weight: bold; 
@@ -273,7 +320,7 @@ function initBdayTheme() {
                             const finishBtn = document.createElement('button');
                             finishBtn.id = 'btn-bday-finish';
                             finishBtn.className = 'bday-action-btn';
-                            finishBtn.style.cssText = 'position:fixed; bottom:40px; z-index:10000000; box-shadow: 0 4px 20px rgba(0,0,0,0.5);';
+                            finishBtn.style.cssText = 'position:fixed; bottom:25px; z-index:10000000; box-shadow: 0 4px 20px rgba(0,0,0,0.5);';
                             finishBtn.innerText = "Bắt Đầu Làm Việc 💻";
                             finishBtn.onclick = () => {
                                 overlay.style.opacity = '0';
@@ -295,7 +342,7 @@ function initBdayTheme() {
     // =========================================================================
     window.TGDD_THEME = {
         startLoading: function(isStatic) {
-            return false; // Để tool chạy nhẹ nhàng theo thiết lập bản 15.5
+            return false;
         },
         finishLoading: function(callbackToNextPage) {
             if (callbackToNextPage) callbackToNextPage();

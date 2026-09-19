@@ -257,18 +257,14 @@ function initBdayTheme() {
                         <div class="letter-paper">
                             <div class="letter-content">
                                 Chúc Hoài Thu sinh nhật vui vẻ nhé! 🎂❤️<br><br>
-                                Đáng lẽ ra thì anh đã có nhiều thời gian hơn để chuẩn bị cho em một món quà.<br>
-                                Nhưng không sao, bao nhiêu quà bánh rồi cũng hết, phải hông?<br>
+                                Đáng lẽ ra thì anh đã có nhiều thời gian hơn để chuẩn bị cho em một món quà.<br><br>
+                                Nhưng không sao, bao nhiêu quà bánh rồi cũng hết, phải hông?<br><br>
                                 Chỉ có những dòng chữ này, anh ngồi đây soạn để gửi đến em là sẽ còn mãi thôi.<br><br>
-                                Thật ra anh luôn muốn hỏi em một điều.<br>
-                                Trong những ngày anh và em không liên lạc, là anh với em đang cố tỏ ra lạnh lùng hay thật ra cả hai đều đang đau lòng?<br><br>
-                                Nếu anh cứ mãi không làm phiền em, cũng chẳng bao giờ nhắn tin cho em nữa, liệu em có quên anh không?<br><br>
-                                Chỉ cần em nói với anh vài câu, cũng đủ khiến anh vui cả ngày.<br>
-                                Điều tiếc nuối lớn nhất đời anh, là đã gặp được một người đặc biệt như em.<br>
-                                Nhưng cuối cùng lại chẳng thể ở bên nhau.<br><br>
-                                Em bên anh một đoạn đường, anh nhớ em cả một đời.<br>
+                                Với anh, chỉ cần em nói với anh vài câu thôi, cũng đủ khiến anh vui cả ngày rồi.<br><br>
+                                Điều tiếc nuối lớn nhất đời anh, là đã gặp được một người đặc biệt như em.<br><br>
+                                Có thể Em sẽ chỉ bên anh một đoạn đường, nhưng anh sẽ nhớ em cả một đời.<br><br>
                                 Nếu như được chọn lại, anh sẽ vẫn chọn quen em, nhưng là khi cả hai chưa là một nửa của ai cả.<br><br>
-                                Chúc em sinh nhật vui vẻ nhé, em bé Hoài Thu. Yêu em! ❤️
+                                Chúc em sinh nhật vui vẻ nhé, em bé Hoài Thu. Anh Yêu Em! Anh sẽ rất nhớ em! ❤️
                             </div>
                         </div>
                     </div>

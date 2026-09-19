@@ -262,9 +262,11 @@ function initBdayTheme() {
                                 Chỉ có những dòng chữ này, anh ngồi đây soạn để gửi đến em là sẽ còn mãi thôi.<br><br>
                                 Với anh, chỉ cần em nói với anh vài câu thôi, cũng đủ khiến anh vui cả ngày rồi.<br><br>
                                 Điều tiếc nuối lớn nhất đời anh, là đã gặp được một người đặc biệt như em.<br><br>
-                                Có thể Em sẽ chỉ bên anh một đoạn đường, nhưng anh sẽ nhớ em cả một đời.<br><br>
+                                Em sẽ chỉ bên anh một đoạn đường, nhưng anh sẽ nhớ em cả một đời.<br><br>
                                 Nếu như được chọn lại, anh sẽ vẫn chọn quen em, nhưng là khi cả hai chưa là một nửa của ai cả.<br><br>
-                                Chúc em sinh nhật vui vẻ nhé, em bé Hoài Thu. Anh Yêu Em! Anh sẽ rất nhớ em! ❤️
+                                Chúc em sinh nhật vui vẻ nhé, em bé Hoài Thu.<br><br>
+                                Chúc em tuổi mới thật nhiều thành công, lúc nào cũng vui vẻ, lúc nào cũng là cô gái đầy năng lượng.<br><br>
+                                Anh Yêu Em! Anh sẽ rất nhớ em! ❤️
                             </div>
                         </div>
                     </div>

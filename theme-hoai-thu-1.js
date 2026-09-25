@@ -19,7 +19,27 @@
         { main: "Hệ thống đang tải dữ liệu ...", sub: "Chúc cô gái nhỏ một ngày luôn rạng rỡ và tràn đầy năng lượng! ☀️🌸" },
         { main: "Đang tổng hợp báo cáo cho em ...", sub: "Cứ nhẹ nhàng làm việc, mọi thứ đã có anh lo! ✨💖" },
         { main: "Sắp xong rồi nhe...", sub: "Hôm nay chắc chắn sẽ là một ngày siêu may mắn và chốt đơn mỏi tay! 🍀🥰" },
-        { main: "Đang lấy số liệu mới nhất cho em...", sub: "Bắn tim cho cô bé chăm chỉ và dễ thương nhất! 💖🧸" }
+        { main: "Đang lấy số liệu mới nhất cho em...", sub: "Bắn tim cho cô bé chăm chỉ và dễ thương nhất! 💖🧸" },
+        { main: "Đang đồng bộ dữ liệu cho Hoài Thu...", sub: "Hôm nay em xinh đẹp và rạng rỡ nhất trần đời đấy nhé! 🌷✨" },
+        { main: "Đang gom số liệu xịn sò nhất...", sub: "Làm việc mệt thì nhớ chớp mắt nghỉ ngơi xíu nha! 👀💖" },
+        { main: "Chờ xíu xiu thôi nè...", sub: "Gửi tặng Hoài Thu 1000 nụ cười tiếp thêm động lực hôm nay! 😊🌟" },
+        { main: "Đang tải báo cáo siêu tốc...", sub: "Chúc Hoài Thu một ngày làm việc nhẹ nhàng như một cơn gió! 🍃💕" },
+        { main: "Dữ liệu đang chạy tới tấp...", sub: "Đừng căng thẳng nha, việc khó tới đâu cũng sẽ qua hết thôi! 💪🌸" },
+        { main: "Đang kiểm tra từng dòng số liệu...", sub: "Hôm nay cô bé đã ăn uống đầy đủ chưa đấy? 🍱🍓" },
+        { main: "Hệ thống đang tăng tốc vì Hoài Thu...", sub: "Năng lượng tích cực đang được nạp đầy 100%! 🔋✨" },
+        { main: "Báo cáo sắp hiện ra rồi nè...", sub: "Mỗi ngày đi làm đều là một ngày tỏa sáng của em! 🌟🥰" },
+        { main: "Đang xử lý dữ liệu đặc biệt...", sub: "Vui vẻ không quạu, chuyện gì khó cứ để anh lo! 🐱💖" },
+        { main: "Đang tổng hợp doanh số thật đẹp...", sub: "Chúc Hoài Thu hôm nay vượt KPI cái vèo luôn nhé! 🎯📈" },
+        { main: "Hệ thống đang thả tim cho em...", sub: "Hít thở thật sâu, một ngày tuyệt vời đang chờ em đón nhận! 🌈💕" },
+        { main: "Đang lọc những con số may mắn nhất...", sub: "Hôm nay có thèm trà sữa thì nhớ chọn ít đường cho khỏe nha! 🧋✨" },
+        { main: "Dữ liệu đang bay về đây...", sub: "Nụ cười của Hoài Thu làm bừng sáng cả không gian luôn đó! ☀️🌻" },
+        { main: "Tải nhanh để em không phải đợi lâu...", sub: "Cố gắng lên nào cô gái giỏi giang và kiên cường! 🎈💖" },
+        { main: "Chờ tí xíu là xong ngay...", sub: "Nhớ ngồi thẳng lưng để không bị mỏi vai gáy nha em bé! 🧘‍♀️💗" },
+        { main: "Đang chuẩn bị bảng biểu lung linh...", sub: "Mong mọi điều dịu dàng nhất sẽ đến với Hoài Thu hôm nay! 🍰🌸" },
+        { main: "Số liệu đang xếp hàng ngay ngắn...", sub: "Hôm nay trông em đáng yêu cực kỳ luôn! 🧸💕" },
+        { main: "Hệ thống ưu tiên phục vụ Hoài Thu...", sub: "Làm việc xong sớm rồi về nghỉ ngơi, đừng ôm việc nhiều quá nhé! 🏡✨" },
+        { main: "Đang kết xuất báo cáo chuẩn xịn...", sub: "Gửi một cái ôm thật ấm tiếp thêm sức mạnh cho em nè! 🫂💖" },
+        { main: "Tất cả đã sẵn sàng phục vụ em...", sub: "Chúc Hoài Thu luôn yêu đời, bình an và ngập tràn niềm vui! 🍀💌" }
     ];
 
     // =========================================================================

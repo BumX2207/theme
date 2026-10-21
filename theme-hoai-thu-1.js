@@ -79,7 +79,7 @@
     ];
 
     // =========================================================================
-    // 3. NHÚNG CSS GIAO DIỆN THEME "HOÀI THU"
+    // 3. NHÚNG CSS GIAO DIỆN THEME "HOÀI THU" (TÂN TRANG MENU LUNG LINH)
     // =========================================================================
     const style = document.createElement('style');
     style.id = 'theme-hoaithu-style';
@@ -105,40 +105,102 @@
         @keyframes fadeInText { 0% { opacity: 0; transform: translateY(10px); } 100% { opacity: 1; transform: translateY(0); } }
         @keyframes fadeOutBanner { 0% { opacity: 1; } 100% { opacity: 0; visibility: hidden; } }
 
-        /* --- TÙY BIẾN NÚT 3 GẠCH MENU HEADER TONE HỒNG --- */
+        /* --- NÚT 3 GẠCH MENU HEADER TONE HỒNG NGỌC TRAI --- */
         #tgdd-header-menu-btn {
-            background: rgba(255, 240, 243, 0.85) !important;
+            background: rgba(255, 240, 243, 0.9) !important;
             border: 1.5px solid #ffb3c6 !important;
             color: #ff4d6d !important;
-            box-shadow: 0 3px 10px rgba(255, 77, 109, 0.2) !important;
+            box-shadow: 0 3px 12px rgba(255, 77, 109, 0.25) !important;
         }
         #tgdd-header-menu-btn:hover {
             background: #fff0f3 !important;
             border-color: #ff4d6d !important;
             transform: scale(1.08) !important;
+            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4) !important;
         }
 
-        /* --- SIDEBAR MENU TONE HỒNG PASTEL --- */
+        /* =========================================================================
+           💖 TÂN TRANG FULL MENU SIDEBAR CHO BÉ YÊU (FROSTED PINK PARADISE)
+           ========================================================================= */
         #tgdd-sidebar-menu {
-            background: rgba(255, 240, 243, 0.75) !important;
-            backdrop-filter: blur(25px) !important;
-            -webkit-backdrop-filter: blur(25px) !important;
-            border-right: 1.5px solid rgba(255, 179, 198, 0.6) !important;
+            background: radial-gradient(circle at 50% 20%, rgba(255, 240, 243, 0.96), rgba(255, 215, 225, 0.98)) !important;
+            backdrop-filter: blur(30px) saturate(180%) !important;
+            -webkit-backdrop-filter: blur(30px) saturate(180%) !important;
+            border: 2px solid rgba(255, 255, 255, 0.8) !important;
+            box-shadow: 0 0 50px rgba(255, 107, 129, 0.25), inset 0 0 30px rgba(255, 255, 255, 0.6) !important;
         }
-        #tgdd-sidebar-menu::before {
-            background: linear-gradient(180deg, #fff5f7, #ffffff) !important;
-            box-shadow: 0 4px 20px rgba(255, 77, 109, 0.1) !important;
+
+        #tgdd-sidebar-overlay {
+            background: rgba(153, 27, 74, 0.35) !important;
+            backdrop-filter: blur(8px) !important;
+            -webkit-backdrop-filter: blur(8px) !important;
         }
+
+        /* HEADER MENU */
         .sidebar-header {
-            border-bottom: 2px solid #ff758f !important;
+            border-bottom: 2px dashed rgba(255, 117, 143, 0.4) !important;
+            padding: 10px 0 !important;
         }
         .sidebar-title {
-            color: #ff4d6d !important;
+            color: #d81b60 !important;
             font-family: 'Georgia', serif !important;
+            font-size: 18px !important;
+            font-weight: 900 !important;
+            letter-spacing: 1px !important;
+            text-shadow: 0 2px 8px rgba(216, 27, 96, 0.2) !important;
         }
-        .tgdd-menu-item:hover {
-            background: rgba(255, 77, 109, 0.08) !important;
+
+        /* NÚT ĐÓNG (X) DỄ THƯƠNG */
+        .sidebar-close {
+            background: #ffffff !important;
+            border: 1.5px solid #ffb3c6 !important;
             color: #ff4d6d !important;
+            box-shadow: 0 2px 8px rgba(255, 77, 109, 0.2) !important;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+        }
+        .sidebar-close:hover {
+            background: #ff4d6d !important;
+            color: #ffffff !important;
+            border-color: #ff4d6d !important;
+            transform: rotate(90deg) scale(1.15) !important;
+            box-shadow: 0 4px 12px rgba(255, 77, 109, 0.4) !important;
+        }
+
+        /* CÁC Ô LƯỚI MENU (GRID TIỆN ÍCH VUÔNG VẮN LUNG LINH) */
+        .tgdd-menu-item {
+            background: rgba(255, 255, 255, 0.75) !important;
+            backdrop-filter: blur(10px) !important;
+            border: 1.5px solid rgba(255, 179, 198, 0.7) !important;
+            border-radius: 18px !important;
+            box-shadow: 0 6px 16px rgba(255, 77, 109, 0.08), inset 0 1px 1px #ffffff !important;
+            color: #4a044e !important;
+            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+        }
+
+        .tgdd-menu-item:hover {
+            background: #ffffff !important;
+            border-color: #ff4d6d !important;
+            transform: translateY(-4px) scale(1.04) !important;
+            box-shadow: 0 10px 25px rgba(255, 77, 109, 0.22), 0 0 12px rgba(255, 182, 193, 0.6) !important;
+        }
+        .tgdd-menu-item:active {
+            transform: scale(0.92) !important;
+        }
+
+        .tgdd-menu-item span {
+            color: #4a044e !important;
+            font-weight: 800 !important;
+            font-size: 11.5px !important;
+            letter-spacing: 0.2px !important;
+        }
+
+        /* ĐIỂM XUYẾT MÀU CHO TỪNG LOẠI ICON */
+        .tgdd-menu-item svg {
+            filter: drop-shadow(0 2px 6px rgba(255, 77, 109, 0.25)) !important;
+            transition: transform 0.25s ease !important;
+        }
+        .tgdd-menu-item:hover svg {
+            transform: scale(1.18) !important;
         }
 
         /* =========================================================================
@@ -229,7 +291,7 @@
                 if (titleEl) titleEl.innerHTML = "Bắt đầu chạy báo cáo 💕";
                 if (subEl) subEl.innerText = "Chờ chút nha ...";
                 
-                // Níu lại 1.2 giây để đọc lời chúc rồi chuyển tiếp
+                // Dừng lại 1.2 giây để người yêu đọc lời chúc ngọt ngào rồi chuyển tiếp
                 setTimeout(() => {
                     overlay.style.opacity = '0';
                     setTimeout(() => {
@@ -253,5 +315,5 @@
         setTimeout(() => { if (banner) banner.remove(); }, 4600);
     }
 
-    console.log("Đã kích hoạt Theme Hoài Thu! 💕🌸");
+    console.log("Đã kích hoạt Theme Hoài Thu lung linh kẹo ngọt! 💕🌸");
 })();

@@ -143,7 +143,7 @@
         }
         .sidebar-title {
             color: #d81b60 !important;
-            font-family: 'Georgia', serif !important;
+            font-family: 'Tahoma', serif !important;
             font-size: 18px !important;
             font-weight: 900 !important;
             letter-spacing: 1px !important;
